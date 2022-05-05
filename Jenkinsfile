@@ -10,7 +10,7 @@ pipeline {
         changeset "SOSU2022_BackEnd/SOSU2022_BackEnd.Domain"
         changeset "SOSU2022_BackEnd/SOSU2022_BackEnd.Core"
         changeset "SOSU2022_BackEnd/SOSU2022_BackEnd.DataAccess"
-        changeset "SOSU2022_BackEnd/SOSU2022_BackEnd.DataWepApi"
+        changeset "SOSU2022_BackEnd/SOSU2022_BackEnd.WepApi"
         }
         }
             steps {
