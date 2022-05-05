@@ -8,5 +8,7 @@ namespace SOSU2022_BackEnd.Core.IServices
         List<Citizen> GetAllCitizens();
 
         Citizen CreateCitizen(Citizen citizen);
+
+        Citizen GetCitizen(int id);
     }
 }
