@@ -7,5 +7,7 @@ namespace SOSU2022_BacEnd.Domain.IRepositories
     {
         List<Citizen> GetCitizens();
         Citizen CreateCitizen(Citizen citizen);
+
+        Citizen GetCitizen(int id);
     }
 }
