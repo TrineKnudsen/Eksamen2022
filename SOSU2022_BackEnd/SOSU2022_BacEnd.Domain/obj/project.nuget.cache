@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "rufGE/fDVHr+MNatBi8IODR1ojgksAo49MFL2fiQ/IwkyzRmlRX2LCBrYBSVX/EucrejXREV1xa1myGv7n0XCA==",
+  "dgSpecHash": "/6oGqZ+a/Bji/JGUk6cE5VXruKzeWafzh4yxQWawFdGWyVmyuJeLBE8YuLclmZ0U1WQWo9l+esfCDKUBWjtHaA==",
   "success": true,
-  "projectFilePath": "C:\\Eksamen2022\\FullStack & DevOps\\SOSU2022_BackEnd\\SOSU2022_BacEnd.Domain\\SOSU2022_BacEnd.Domain.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Work4\\Eksamen2022\\Eksamen2022\\SOSU2022_BackEnd\\SOSU2022_BacEnd.Domain\\SOSU2022_BacEnd.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\annec\\.nuget\\packages\\mongodb.bson\\2.15.1\\mongodb.bson.2.15.1.nupkg.sha512",
+    "C:\\Users\\annec\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

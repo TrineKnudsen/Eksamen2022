@@ -22,7 +22,7 @@ namespace SOSU2022_BacEnd.Domain.Services
 
         public Citizen CreateCitizen(Citizen citizen)
         {
-            return _citizenRepository.CreateCitizen(citizen);
+            throw new System.NotImplementedException();
         }
 
         public Citizen GetCitizen(int id)

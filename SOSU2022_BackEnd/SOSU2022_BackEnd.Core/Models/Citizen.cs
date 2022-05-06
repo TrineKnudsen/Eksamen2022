@@ -1,8 +1,14 @@
+using MongoDB.Bson;
+
 namespace SOSU2022_BackEnd.Core.Models
 {
     public class Citizen
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public ObjectId Id { get; set; }
+        public string Navn { get; set; }
+        
+        public string Adresse { get; set; }
+        
+        public string Telefon { get; set; }
     }
 }

@@ -28,12 +28,12 @@ namespace SOSU2022_BackEnd.Controllers
         {
             var citizen = _citizenService.CreateCitizen(new Citizen
             {
-                Name = citizenDto.Name
+                Navn = citizenDto.Navn
             });
 
             var citizenToReturn = new CitizenDto
             {
-                Name = citizen.Name
+                Navn = citizen.Navn
             };
 
             return Created("https//:localhost/api/citizen", citizenToReturn);
@@ -47,7 +47,9 @@ namespace SOSU2022_BackEnd.Controllers
                 var citizens = _citizenService.GetAllCitizens()
                     .Select(c => new CitizenDto
                     {
-                        Name = c.Name
+                        Navn = c.Navn,
+                        Adresse = c.Adresse,
+                        Telefon = c.Telefon
                     }).ToList();
 
                 return Ok(new CitizenDtos

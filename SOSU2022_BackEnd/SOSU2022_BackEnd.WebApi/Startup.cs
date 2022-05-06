@@ -11,6 +11,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using SOSU2022_BacEnd.Domain.IRepositories;
+using SOSU2022_BacEnd.Domain.Services;
+using SOSU2022_BackEnd.Core.IServices;
+using SOSU2022_BackEnd.Core.Models;
+using SOSU2022_BackEnd.DataAcces.Repositories;
 
 namespace SOSU2022_BackEnd
 {
@@ -31,6 +36,10 @@ namespace SOSU2022_BackEnd
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "SOSU2022_BackEnd.WebApi", Version = "v1"});
             });
+
+            services.AddScoped<ICitizenRepository, CitizenRepository>();
+            services.AddScoped<ICitizenService, CitizenService>();
+            services.AddScoped<ICitizenDatabaseSettings, SOSUDatabaseSettings>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
