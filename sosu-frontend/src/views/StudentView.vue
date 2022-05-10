@@ -15,7 +15,7 @@
 
   <p>
     <button
-      class="btn btn-primary"
+      class="btn btn-default"
       type="button"
       data-bs-toggle="collapse"
       data-bs-target="#multicollapse"
@@ -25,11 +25,11 @@
       >Generelle oplysninger
     </button>
 
-    <button class="btn btn-primary" type="button" data-bs-toggle="collapse">
+    <button class="btn btn-default" type="button" data-bs-toggle="collapse">
       >Helbredstilstande
     </button>
 
-    <button class="btn btn-primary" type="button" data-bs-toggle="collapse">
+    <button class="btn btn-default" type="button" data-bs-toggle="collapse">
       >Funktionsevnetilstande
     </button>
   </p>
@@ -55,8 +55,7 @@
 </template>
 
 <script>
-export default {
-};
+export default {};
 </script>
 
 <style scoped>
