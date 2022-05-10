@@ -13,6 +13,15 @@
     </b-list-group>
   </div>
 
+  <div id="buttons">
+  <button @click="$router.push('/laerer/nyborger')" type="button" class="btn btn-outline-success">Ny borger</button>
+  <button type="button" class="btn btn-outline-success">Opdater sagsoplysninger</button>
+    <button type="button" class="btn btn-outline-danger">Slet borger</button> |
+    <button @click="$router.push('/laerer/nysag')" type="button" class="btn btn-outline-success">Ny sag</button>
+    <button type="button" class="btn btn-outline-success">Rediger sag</button>
+    <button type="button" class="btn btn-outline-danger">Slet sag</button>
+  </div>
+
   <div id="student">
   <b-form-group label="Vælg Elever:" v-slot="{ ariaDescribedby }">
     <b-form-checkbox-group
@@ -51,13 +60,16 @@ export default {
 <style scoped>
 #containerlist {
   width:50%;
-  background:black;
 }
 #list2 {
   float:left;
   width:49.9%;
+  padding-left: 10%;
 }
 #student {
-  margin-top: 20%;
+  margin-top: 5%;
+}
+#buttons {
+  margin-top: 15%;
 }
 </style>
