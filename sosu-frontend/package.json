@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "bootstrap": "^5.1.3",
+    "bootstrap-vue": "^2.22.0",
+    "bootstrap-vue-3": "^0.1.12",
+    "mdbvue": "^6.7.3",
     "pinia": "^2.0.13",
     "vue": "^3.2.33",
     "vue-router": "^4.0.14"
