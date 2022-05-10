@@ -67,4 +67,8 @@ export default {};
   float: left;
   width: 49.9%;
 }
+
+#buttons {
+  margin-top: 20%;
+}
 </style>

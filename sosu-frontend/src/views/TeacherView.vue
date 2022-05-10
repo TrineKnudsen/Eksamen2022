@@ -17,7 +17,7 @@
   <button @click="$router.push('/laerer/nyborger')" type="button" class="btn btn-outline-success">Ny borger</button>
   <button type="button" class="btn btn-outline-success">Opdater sagsoplysninger</button>
     <button type="button" class="btn btn-outline-danger">Slet borger</button> |
-    <button @click="$router.push('/laerer/nysag')" type="button" class="btn btn-outline-success">Ny sag</button>
+    <button @click="$router.push('/laerer/nysag')" type="button" class="btn btn-outline-success">Ny sagsåbning</button>
     <button type="button" class="btn btn-outline-success">Rediger sag</button>
     <button type="button" class="btn btn-outline-danger">Slet sag</button>
   </div>

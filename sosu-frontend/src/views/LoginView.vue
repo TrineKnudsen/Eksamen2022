@@ -1,6 +1,5 @@
 <template>
   <form>
-    <p class="h4 text-center mb-4">Sign in</p>
     <label for="defaultFormLoginEmailEx" class="grey-text">Din skole-mail</label>
     <input type="email" id="defaultFormLoginEmailEx" class="form-control" />
     <br />

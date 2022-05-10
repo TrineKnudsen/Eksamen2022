@@ -9,6 +9,10 @@
         <label>Beskriv hændelsen</label>
         <textarea class="form-control" rows="3"></textarea>
       </div>
+      <div class="form-row">
+        <label>Hvem retter henvendelse?</label>
+        <textarea class="form-control" rows="3"></textarea>
+      </div>
     <button @click="$router.push('/laerer')" type="submit" class="btn btn-primary">Gem sag</button>
     </div>
   </form>
