@@ -37,7 +37,7 @@
     <div class="collapse multi-collapse" id="multicollapse">
       <div class="card card-body">
         <b-list-group>
-          <b-list-group-item>Mestring</b-list-group-item>
+          <b-list-group-item id="opener">Mestring</b-list-group-item>
           <b-list-group-item>Motivation</b-list-group-item>
           <b-list-group-item>Ressourcer</b-list-group-item>
           <b-list-group-item>Roller</b-list-group-item>
