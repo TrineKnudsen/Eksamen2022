@@ -42,9 +42,9 @@ namespace SOSU2022_BackEnd.DataAcces.Repositories
             return updatedCaseOpening;
         }
 
-        public void Delete(int caseOpeningToDelete)
+        public void Delete(string caseOpeningToDelete)
         {
-            var deleteFilter = Builders<CaseOpening>.Filter.Eq("_id", caseOpeningToDelete);
+            var deleteFilter = Builders<CaseOpening>.Filter.Eq("_id", new ObjectId(caseOpeningToDelete));
             _caseOpenings.DeleteMany(deleteFilter);
         }
     }

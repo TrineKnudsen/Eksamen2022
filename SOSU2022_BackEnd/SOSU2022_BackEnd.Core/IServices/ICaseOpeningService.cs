@@ -9,6 +9,6 @@ namespace SOSU2022_BackEnd.Core.IServices
         CaseOpening Create(CaseOpening caseOpening);
         List<CaseOpening> GetAll();
         CaseOpening Update(string idToUpdate, CaseOpening updatedCaseOpening);
-        void Delete(int idToDelete);
+        void Delete(string idToDelete);
     }
 }

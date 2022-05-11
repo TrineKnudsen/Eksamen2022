@@ -84,5 +84,11 @@ namespace SOSU2022_BackEnd.Controllers
             };
             return Ok(coDtoToReturn);
         }
+
+        [HttpDelete("{coToDelete}")]
+        public void DeleteCaseOpening(string coToDelete, [FromBody] CaseOpeningDto caseOpeningDto)
+        {
+            _caseOpeningService.Delete(coToDelete);
+        }
     }
 }

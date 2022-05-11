@@ -27,3 +27,6 @@ coverage
 *.sln
 *.sw?
 SOSU2022_BackEnd/SOSU2022_BackEnd.WebApi/bin/Debug/net5.0/SOSU2022_BacEnd.Domain.dll
+*.pdb
+*.dll
+*.cache
