@@ -84,24 +84,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\annec\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Trine\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Work4\\Eksamen2022\\Eksamen2022\\SOSU2022_BackEnd\\SOSU2022_BackEnd.Core\\SOSU2022_BackEnd.Core.csproj",
+      "projectUniqueName": "C:\\Work\\Eksamen2022\\SOSU2022_BackEnd\\SOSU2022_BackEnd.Core\\SOSU2022_BackEnd.Core.csproj",
       "projectName": "SOSU2022_BackEnd.Core",
-      "projectPath": "C:\\Work4\\Eksamen2022\\Eksamen2022\\SOSU2022_BackEnd\\SOSU2022_BackEnd.Core\\SOSU2022_BackEnd.Core.csproj",
-      "packagesPath": "C:\\Users\\annec\\.nuget\\packages\\",
-      "outputPath": "C:\\Work4\\Eksamen2022\\Eksamen2022\\SOSU2022_BackEnd\\SOSU2022_BackEnd.Core\\obj\\",
+      "projectPath": "C:\\Work\\Eksamen2022\\SOSU2022_BackEnd\\SOSU2022_BackEnd.Core\\SOSU2022_BackEnd.Core.csproj",
+      "packagesPath": "C:\\Users\\Trine\\.nuget\\packages\\",
+      "outputPath": "C:\\Work\\Eksamen2022\\SOSU2022_BackEnd\\SOSU2022_BackEnd.Core\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\annec\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Trine\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

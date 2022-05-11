@@ -29,5 +29,23 @@ namespace SOSU2022_BackEnd.DataAcces.Repositories
         {
             return _caseOpenings.Find(caseOpening => true).ToList();
         }
+
+        public CaseOpening Update(string caseToUpdate, CaseOpening updatedCaseOpening)
+        {
+            var filter = Builders<CaseOpening>.Filter.Eq("_id", new ObjectId(caseToUpdate));
+            var update = Builders<CaseOpening>.Update
+                .Set("Henvisning", updatedCaseOpening.Henvisning)
+                .Set("Fritekst", updatedCaseOpening.Fritekst);
+
+            _caseOpenings.FindOneAndUpdate(filter, update);
+
+            return updatedCaseOpening;
+        }
+
+        public void Delete(int caseOpeningToDelete)
+        {
+            var deleteFilter = Builders<CaseOpening>.Filter.Eq("_id", caseOpeningToDelete);
+            _caseOpenings.DeleteMany(deleteFilter);
+        }
     }
 }

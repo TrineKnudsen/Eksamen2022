@@ -40,6 +40,8 @@ namespace SOSU2022_BackEnd
             services.AddScoped<ICitizenRepository, CitizenRepository>();
             services.AddScoped<ICitizenService, CitizenService>();
             services.AddScoped<ICitizenDatabaseSettings, SOSUDatabaseSettings>();
+            services.AddScoped<ICaseOpeningRepository, CaseOpeningRepository>();
+            services.AddScoped<ICaseOpeningService, CaseOpeningService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

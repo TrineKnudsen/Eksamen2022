@@ -1,8 +1,8 @@
 using MongoDB.Bson;
 
-namespace SOSU2022_BacEnd.Domain.IRepositories
+namespace SOSU2022_BackEnd.DTOs
 {
-    public class CaseOpening
+    public class CaseOpeningDto
     {
         public ObjectId Id { get; set; }
         public ObjectId BorgerId { get; set; }

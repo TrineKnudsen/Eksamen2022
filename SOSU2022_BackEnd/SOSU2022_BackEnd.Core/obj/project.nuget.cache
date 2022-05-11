@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Ha3MboRVBXFPuOE/Fu74yvIa5j9iEwmiCzQfTxeK2Pe72/va+kyFxOsX+1kEgTjD/QHh3UtjVpsZXw8AGj69Rg==",
+  "dgSpecHash": "qybrztQg0U7CjdEo23iNPAi8VeTot7poPc6Jt0LPdU8HQTAWEd06hzL9BRteBd4e6XxlHWlIjMYVeDwJhPKvcw==",
   "success": true,
-  "projectFilePath": "C:\\Work4\\Eksamen2022\\Eksamen2022\\SOSU2022_BackEnd\\SOSU2022_BackEnd.Core\\SOSU2022_BackEnd.Core.csproj",
+  "projectFilePath": "C:\\Work\\Eksamen2022\\SOSU2022_BackEnd\\SOSU2022_BackEnd.Core\\SOSU2022_BackEnd.Core.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\annec\\.nuget\\packages\\mongodb.bson\\2.15.1\\mongodb.bson.2.15.1.nupkg.sha512",
-    "C:\\Users\\annec\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512"
+    "C:\\Users\\Trine\\.nuget\\packages\\mongodb.bson\\2.15.1\\mongodb.bson.2.15.1.nupkg.sha512",
+    "C:\\Users\\Trine\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }

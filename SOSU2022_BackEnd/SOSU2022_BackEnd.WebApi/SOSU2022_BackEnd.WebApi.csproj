@@ -12,10 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\SOSU2022_BacEnd.Domain\SOSU2022_BacEnd.Domain.csproj" />
       <ProjectReference Include="..\SOSU2022_BackEnd.Core\SOSU2022_BackEnd.Core.csproj" />
       <ProjectReference Include="..\SOSU2022_BackEnd.DataAccess\SOSU2022_BackEnd.DataAccess.csproj" />
