@@ -1,6 +1,5 @@
 C:\Work4\Eksamen2022\Eksamen2022\SOSU2022_BackEnd\SOSU2022_BacEnd.Domain\bin\Debug\net5.0\SOSU2022_BacEnd.Domain.deps.json
 C:\Work4\Eksamen2022\Eksamen2022\SOSU2022_BackEnd\SOSU2022_BacEnd.Domain\bin\Debug\net5.0\SOSU2022_BacEnd.Domain.dll
-C:\Work4\Eksamen2022\Eksamen2022\SOSU2022_BackEnd\SOSU2022_BacEnd.Domain\bin\Debug\net5.0\ref\SOSU2022_BacEnd.Domain.dll
 C:\Work4\Eksamen2022\Eksamen2022\SOSU2022_BackEnd\SOSU2022_BacEnd.Domain\bin\Debug\net5.0\SOSU2022_BacEnd.Domain.pdb
 C:\Work4\Eksamen2022\Eksamen2022\SOSU2022_BackEnd\SOSU2022_BacEnd.Domain\bin\Debug\net5.0\SOSU2022_BackEnd.Core.dll
 C:\Work4\Eksamen2022\Eksamen2022\SOSU2022_BackEnd\SOSU2022_BacEnd.Domain\bin\Debug\net5.0\SOSU2022_BackEnd.Core.pdb
@@ -13,3 +12,4 @@ C:\Work4\Eksamen2022\Eksamen2022\SOSU2022_BackEnd\SOSU2022_BacEnd.Domain\obj\Deb
 C:\Work4\Eksamen2022\Eksamen2022\SOSU2022_BackEnd\SOSU2022_BacEnd.Domain\obj\Debug\net5.0\SOSU2022_BacEnd.Domain.dll
 C:\Work4\Eksamen2022\Eksamen2022\SOSU2022_BackEnd\SOSU2022_BacEnd.Domain\obj\Debug\net5.0\ref\SOSU2022_BacEnd.Domain.dll
 C:\Work4\Eksamen2022\Eksamen2022\SOSU2022_BackEnd\SOSU2022_BacEnd.Domain\obj\Debug\net5.0\SOSU2022_BacEnd.Domain.pdb
+C:\Work4\Eksamen2022\Eksamen2022\SOSU2022_BackEnd\SOSU2022_BacEnd.Domain\bin\Debug\net5.0\ref\SOSU2022_BacEnd.Domain.dll
