@@ -1,5 +1,4 @@
 export interface Citizen {
-    Id: ObjectId;
-    Navn: string;
-    Alder: int;
+    navn: string;
+    alder: number;
 }

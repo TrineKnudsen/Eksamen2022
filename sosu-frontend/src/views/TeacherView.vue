@@ -10,12 +10,14 @@
       </thead>
     </table>
     <tbody>
-    <tr v-for="(c, index) in citizens" v-bind:key="index">
+    <tr v-for="(c, index) in rooms" v-bind:key="index">
       <td>{{c.Navn}}</td>
       <td>{{c.Alder}}</td>
     </tr>
     </tbody>
   </div>
+
+
   <div id="containerlist">
   <b-list-group id="list2">
     <b-list-group-item>Dorte Hansen</b-list-group-item>
@@ -66,9 +68,13 @@
   const citizenService = new CitizenService();
   let citizens: Ref<Citizen[]> = ref([]);
 
-  citizenService.getTeachers().then((citizen) => {
-    citizens.value = citizen;
+  citizenService.getTeachers().then(obj => {
+    citizens.value = obj;
   })
+
+  async function getList(){
+    return await citizenService.getTeachers();
+  }
 </script>
 
 <style scoped>
