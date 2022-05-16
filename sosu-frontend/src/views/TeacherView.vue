@@ -1,4 +1,21 @@
 <template>
+  <div class="container">
+    <h3 class="p-3 text-center">Citizens</h3>
+    <table class="table table-striped table-bordered">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Alder</th>
+      </tr>
+      </thead>
+    </table>
+    <tbody>
+    <tr v-for="(c, index) in citizens" v-bind:key="index">
+      <td>{{c.Navn}}</td>
+      <td>{{c.Alder}}</td>
+    </tr>
+    </tbody>
+  </div>
   <div id="containerlist">
   <b-list-group id="list2">
     <b-list-group-item>Dorte Hansen</b-list-group-item>
@@ -41,20 +58,17 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      selected: [], // Must be an array reference!
-      options: [
-        { text: 'Lea Sørensen', value: 'Lea Sørensen' },
-        { text: 'Simon Jensen', value: 'Simon Jensen' },
-        { text: 'Michelle Christensen', value: 'Michelle Christensen' },
-        { text: 'Trine Jacobsen', value: 'Trine Jacobsen' }
-      ]
-    }
-  }
-}
+<script setup lang="ts">
+  import {CitizenService} from "@/services/CitizenService"
+  import type {Ref} from "vue";
+  import type {Citizen} from "@/models/Citizen";
+  import {ref} from "vue";
+  const citizenService = new CitizenService();
+  let citizens: Ref<Citizen[]> = ref([]);
+
+  citizenService.getTeachers().then((citizen) => {
+    citizens.value = citizen;
+  })
 </script>
 
 <style scoped>

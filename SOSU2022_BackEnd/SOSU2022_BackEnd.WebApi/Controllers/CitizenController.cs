@@ -51,7 +51,7 @@ namespace SOSU2022_BackEnd.Controllers
                     {
                         Navn = c.Navn,
                         Alder = c.Alder
-                    }).ToList();
+                    }).ToArray();
 
                 return Ok(new CitizenDtos
                 {

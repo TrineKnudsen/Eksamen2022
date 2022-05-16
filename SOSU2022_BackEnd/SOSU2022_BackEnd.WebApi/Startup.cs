@@ -42,6 +42,16 @@ namespace SOSU2022_BackEnd
             services.AddScoped<ICitizenDatabaseSettings, SOSUDatabaseSettings>();
             services.AddScoped<ICaseOpeningRepository, CaseOpeningRepository>();
             services.AddScoped<ICaseOpeningService, CaseOpeningService>();
+
+            services.AddCors(options => 
+                {options.AddPolicy("Dev-cors", policy =>
+                {
+                    policy
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +62,7 @@ namespace SOSU2022_BackEnd
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SOSU2022_BackEnd.WebApi v1"));
+                app.UseCors("Dev-cors");
             }
 
             app.UseHttpsRedirection();

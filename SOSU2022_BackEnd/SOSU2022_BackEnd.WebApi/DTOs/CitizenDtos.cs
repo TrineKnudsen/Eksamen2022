@@ -5,6 +5,6 @@ namespace SOSU2022_BackEnd.DTOs
     public class 
         CitizenDtos
     {
-        public List<CitizenDto> List { get; set; }
+        public CitizenDto[] List { get; set; }
     }
 }
