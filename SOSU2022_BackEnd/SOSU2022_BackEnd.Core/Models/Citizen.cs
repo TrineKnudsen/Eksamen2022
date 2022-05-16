@@ -6,9 +6,6 @@ namespace SOSU2022_BackEnd.Core.Models
     {
         public ObjectId Id { get; set; }
         public string Navn { get; set; }
-        
-        public string Adresse { get; set; }
-        
-        public string Telefon { get; set; }
+        public int Alder { get; set; }
     }
 }

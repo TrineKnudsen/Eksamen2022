@@ -28,12 +28,14 @@ namespace SOSU2022_BackEnd.Controllers
         {
             var citizen = _citizenService.CreateCitizen(new Citizen
             {
-                Navn = citizenDto.Navn
+                Navn = citizenDto.Navn,
+                Alder = citizenDto.Alder
             });
 
             var citizenToReturn = new CitizenDto
             {
-                Navn = citizen.Navn
+                Navn = citizen.Navn,
+                Alder = citizen.Alder
             };
 
             return Created("https//:localhost/api/citizen", citizenToReturn);
@@ -48,8 +50,7 @@ namespace SOSU2022_BackEnd.Controllers
                     .Select(c => new CitizenDto
                     {
                         Navn = c.Navn,
-                        Adresse = c.Adresse,
-                        Telefon = c.Telefon
+                        Alder = c.Alder
                     }).ToList();
 
                 return Ok(new CitizenDtos
@@ -61,6 +62,29 @@ namespace SOSU2022_BackEnd.Controllers
             {
                 return StatusCode(500, e.Message);
             }
+        }
+
+        [HttpPatch("{cToUpdate}")]
+        public ActionResult<CitizenDto> UpdateCitizenDto(string cToUpdate, [FromBody] CitizenDto citizenDto)
+        {
+            var ci = _citizenService.Update(cToUpdate, new Citizen
+            {
+                Navn = citizenDto.Navn,
+                Alder = citizenDto.Alder
+            });
+
+            var cDtoToReturn = new CitizenDto
+            {
+                Navn = ci.Navn,
+                Alder = ci.Alder
+            };
+            return Ok(cDtoToReturn);
+        }
+
+        [HttpDelete("{cToDelete}")]
+        public void DeleteCitizen(string cToDelete, [FromBody] CitizenDto citizenDto)
+        {
+            _citizenService.Delete(cToDelete);
         }
     }
 }

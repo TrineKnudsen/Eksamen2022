@@ -25,5 +25,40 @@ namespace SOSU2022_BackEnd.DataAcces.Repositories
         {
             return _citizens.Find(citizen => true).ToList();
         }
+
+        public Citizen CreateCitizen(Citizen citizen)
+        {
+            var ce = new CitizenEntity
+            {
+                Name = citizen.Navn,
+                Age = citizen.Alder
+            };
+            
+            _citizens.InsertOne(citizen);
+
+            return new Citizen
+            {
+                Navn = ce.Name,
+                Alder = ce.Age
+            };
+        }
+
+        public Citizen Update(string citizenToUpdate, Citizen updatedCitizen)
+        {
+            var filter = Builders<Citizen>.Filter.Eq("_id", new ObjectId(citizenToUpdate));
+            var update = Builders<Citizen>.Update
+                .Set("Navn", updatedCitizen.Navn)
+                .Set("Alder", updatedCitizen.Alder);
+            
+            _citizens.FindOneAndUpdate(filter, update);
+            
+            return updatedCitizen;
+        }
+
+        public void Delete(string citizenToDelete)
+        {
+            var deleteFilter = Builders<Citizen>.Filter.Eq("_id", new ObjectId(citizenToDelete));
+            _citizens.DeleteMany(deleteFilter);
+        }
     }
 }
