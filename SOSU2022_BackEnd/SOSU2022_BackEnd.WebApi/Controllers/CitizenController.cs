@@ -42,21 +42,16 @@ namespace SOSU2022_BackEnd.Controllers
         }
 
         [HttpGet]
-        public ActionResult<CitizenDtos> GetAllCitizen()
+        public ActionResult<CitizenDto[]> GetAllCitizen()
         {
             try
             {
-                var citizens = _citizenService.GetAllCitizens()
+                return _citizenService.GetAllCitizens()
                     .Select(c => new CitizenDto
                     {
                         Navn = c.Navn,
                         Alder = c.Alder
                     }).ToArray();
-
-                return Ok(new CitizenDtos
-                {
-                    List = citizens
-                });
             }
             catch (Exception e)
             {

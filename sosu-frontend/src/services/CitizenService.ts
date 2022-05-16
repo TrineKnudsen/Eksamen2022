@@ -5,7 +5,7 @@ import type {CitizenList} from "@/models/CitizenList";
 export class CitizenService {
 
 
-    async getTeachers(): Promise<Citizen[]> {
+    async getCitizen(): Promise<Citizen[]> {
         const res = await http.get<Citizen[]>("/api/Citizen")
         return res.data;
     }

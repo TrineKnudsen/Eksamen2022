@@ -1,30 +1,14 @@
 <template>
-  <div class="container">
-    <h3 class="p-3 text-center">Citizens</h3>
-    <table class="table table-striped table-bordered">
-      <thead>
-      <tr>
-        <th>Name</th>
-        <th>Alder</th>
-      </tr>
-      </thead>
-    </table>
-    <tbody>
-    <tr v-for="(c, index) in rooms" v-bind:key="index">
-      <td>{{c.Navn}}</td>
-      <td>{{c.Alder}}</td>
-    </tr>
-    </tbody>
-  </div>
-
-
+  
   <div id="containerlist">
-  <b-list-group id="list2">
-    <b-list-group-item>Dorte Hansen</b-list-group-item>
-    <b-list-group-item active>Robert Andersen</b-list-group-item>
-    <b-list-group-item>Hanne Andersen</b-list-group-item>
-    <b-list-group-item>Benny Larsen</b-list-group-item>
-    <b-list-group-item>Margit Nielsen</b-list-group-item>
+    <b-list-group id="list2">
+    <b-list-group-item href="#" class="flex-column align-items-start" v-for="c in citizens" v-bind:key="index">
+      <div class="d-flex w-100 justify-content-between">
+        <h6 class="mb-1">{{c.navn}}</h6>
+        <h6 class="mb-1">{{c.alder}}</h6>
+      </div>
+    </b-list-group-item>
+
   </b-list-group>
 
     <b-list-group id="list2">
@@ -66,14 +50,15 @@
   import type {Citizen} from "@/models/Citizen";
   import {ref} from "vue";
   const citizenService = new CitizenService();
+
   let citizens: Ref<Citizen[]> = ref([]);
 
-  citizenService.getTeachers().then(obj => {
+  citizenService.getCitizen().then(obj => {
     citizens.value = obj;
   })
 
   async function getList(){
-    return await citizenService.getTeachers();
+    return await citizenService.getCitizen();
   }
 </script>
 
