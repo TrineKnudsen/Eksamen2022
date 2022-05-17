@@ -1,15 +1,9 @@
 <template>
 
-  <div id="containerlist">
-    <b-list-group id="list2">
-    <b-list-group-item href="#" class="flex-column align-items-start" v-for="(c) in citizens"
-                       @click="getCaseOps(c)">
-      <div class="d-flex w-100 justify-content-between">
-        <h6 class="mb-1">{{c.navn}}</h6>
-        <h6 class="mb-1">{{c.alder}}</h6>
-      </div>
-    </b-list-group-item>
-  </b-list-group>
+  <div>
+    <select class="browser-default custom-select custom-select-lg mb-3" @change="getCaseOps($event)">
+      <option v-for="(c) in citizens" :value="c.id"> {{c.navn}} | {{c.alder}}</option>
+    </select>
   </div>
 
   <div>
@@ -59,6 +53,7 @@
   import {CaseOpeningService} from "@/services/CaseOpeningService";
   const citizenService = new CitizenService();
   const caseOpeningService = new CaseOpeningService();
+  let selectedC: null;
 
   let citizens: Ref<Citizen[]> = ref([]);
   let caseOps: Ref<CaseOpening[]> = ref([]);
@@ -67,9 +62,8 @@
     citizens.value = obj;
   })
 
-  async function getCaseOps(citizen: Citizen) {
-    console.log(citizen);
-    let caseops = await caseOpeningService.getCaseOpeningByCitizen(citizen.id);
+  async function getCaseOps(event: { target: { value: string; }; }) {
+    let caseops = await caseOpeningService.getCaseOpeningByCitizen(event.target.value);
     caseOps.value = caseops;
   }
 
