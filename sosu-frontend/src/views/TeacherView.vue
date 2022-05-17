@@ -2,7 +2,7 @@
 
   <div id="containerlist">
     <b-list-group id="list2">
-    <b-list-group-item href="#" class="flex-column align-items-start" v-for="(c) in citizens" v-bind:key="c.id"  v-model="selectedCitizen">
+    <b-list-group-item href="#" class="flex-column align-items-start" v-for="(c) in citizens" v-model="selectedCitizen">
       <div class="d-flex w-100 justify-content-between">
         <h6 class="mb-1">{{c.navn}}</h6>
         <h6 class="mb-1">{{c.alder}}</h6>
@@ -69,6 +69,8 @@
   })
 
   caseOpeningService.getCaseOpeningByCitizen(selectedCitizen.value)
+
+
 </script>
 
 <style scoped>
