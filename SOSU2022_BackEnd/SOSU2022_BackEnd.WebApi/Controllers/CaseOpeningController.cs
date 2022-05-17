@@ -68,6 +68,24 @@ namespace SOSU2022_BackEnd.Controllers
             }
         }
 
+        [HttpGet("{citizenId}")]
+        public ActionResult<CaseOpeningDto[]> GetByCitizen(string citizenId)
+        {
+            try
+            {
+                return _caseOpeningService.GetByCitizen(citizenId)
+                    .Select(c => new CaseOpeningDto
+                    {
+                        Henvisning = c.Henvisning,
+                        Fritekst = c.Fritekst
+                    }).ToArray();
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
         [HttpPatch("{coToUpdate}")]
         public ActionResult<CaseOpeningDto> UpdateCaseOpeningDto(string coToUpdate, [FromBody] CaseOpeningDto caseOpeningDto)
         {

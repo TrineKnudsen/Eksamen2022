@@ -8,6 +8,7 @@ namespace SOSU2022_BacEnd.Domain.IRepositories
     {
         CaseOpening Create(CaseOpening caseOpening);
         List<CaseOpening> GetAll();
+        List<CaseOpening> GetByCitizen(string citizenId);
         CaseOpening Update(string caseToUpdate, CaseOpening updatedCaseOpening);
         void Delete(string caseOpeningToDelete);
     }

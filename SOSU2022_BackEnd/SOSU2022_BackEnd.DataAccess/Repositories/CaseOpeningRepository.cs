@@ -30,6 +30,11 @@ namespace SOSU2022_BackEnd.DataAcces.Repositories
             return _caseOpenings.Find(caseOpening => true).ToList();
         }
 
+        public List<CaseOpening> GetByCitizen(string citizenId)
+        {
+            return _caseOpenings.Find(caseOpening => caseOpening.Id == new ObjectId(citizenId)).ToList();
+        }
+
         public CaseOpening Update(string caseToUpdate, CaseOpening updatedCaseOpening)
         {
             var filter = Builders<CaseOpening>.Filter.Eq("_id", new ObjectId(caseToUpdate));

@@ -1,18 +1,24 @@
 <template>
-  
+
   <div id="containerlist">
     <b-list-group id="list2">
-    <b-list-group-item href="#" class="flex-column align-items-start" v-for="c in citizens" v-bind:key="index">
+    <b-list-group-item href="#" class="flex-column align-items-start" v-for="(c) in citizens" v-bind:key="c.id"  v-model="selectedCitizen">
       <div class="d-flex w-100 justify-content-between">
         <h6 class="mb-1">{{c.navn}}</h6>
         <h6 class="mb-1">{{c.alder}}</h6>
       </div>
     </b-list-group-item>
-
   </b-list-group>
+    </div>
 
+  <div >
     <b-list-group id="list2">
-      <b-list-group-item>Brækket hofte</b-list-group-item>
+      <b-list-group-item href="#" class="flex-column align-items-start" v-for="co in caseOps" >
+        <div class="d-flex w-100 justify-content-between">
+          <h6 class="mb-1">{{co.Fritekst}}</h6>
+          <h6 class="mb-1">{{co.Henvisning}}</h6>
+        </div>
+      </b-list-group-item>
     </b-list-group>
   </div>
 
@@ -49,17 +55,20 @@
   import type {Ref} from "vue";
   import type {Citizen} from "@/models/Citizen";
   import {ref} from "vue";
+  import type {CaseOpening} from "@/models/CaseOpening";
+  import {CaseOpeningService} from "@/services/CaseOpeningService";
   const citizenService = new CitizenService();
+  const caseOpeningService = new CaseOpeningService();
 
   let citizens: Ref<Citizen[]> = ref([]);
+  let caseOps: Ref<CaseOpening[]> = ref([]);
+  const selectedCitizen = ref("");
 
   citizenService.getCitizen().then(obj => {
     citizens.value = obj;
   })
 
-  async function getList(){
-    return await citizenService.getCitizen();
-  }
+  caseOpeningService.getCaseOpeningByCitizen(selectedCitizen.value)
 </script>
 
 <style scoped>

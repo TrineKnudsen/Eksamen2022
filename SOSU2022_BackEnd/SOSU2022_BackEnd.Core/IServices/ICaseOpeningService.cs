@@ -8,6 +8,7 @@ namespace SOSU2022_BackEnd.Core.IServices
     {
         CaseOpening Create(CaseOpening caseOpening);
         List<CaseOpening> GetAll();
+        List<CaseOpening> GetByCitizen(string citizenId);
         CaseOpening Update(string idToUpdate, CaseOpening updatedCaseOpening);
         void Delete(string idToDelete);
     }

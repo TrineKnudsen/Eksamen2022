@@ -25,6 +25,11 @@ namespace SOSU2022_BacEnd.Domain.Services
             return _repo.GetAll();
         }
 
+        public List<CaseOpening> GetByCitizen(string citizenId)
+        {
+            return _repo.GetByCitizen(citizenId);
+        }
+
         public CaseOpening Update(string idToUpdate, CaseOpening updatedCaseOpening)
         {
             return _repo.Update(idToUpdate, updatedCaseOpening);
