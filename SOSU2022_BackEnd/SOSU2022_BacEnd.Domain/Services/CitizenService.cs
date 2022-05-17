@@ -17,6 +17,7 @@ namespace SOSU2022_BacEnd.Domain.Services
         
         public List<Citizen> GetAllCitizens()
         {
+            
             return _citizenRepository.GetCitizens();
         }
 

@@ -2,21 +2,22 @@
 
   <div id="containerlist">
     <b-list-group id="list2">
-    <b-list-group-item href="#" class="flex-column align-items-start" v-for="(c) in citizens" v-model="selectedCitizen">
+    <b-list-group-item href="#" class="flex-column align-items-start" v-for="(c) in citizens"
+                       @click="getCaseOps(c)">
       <div class="d-flex w-100 justify-content-between">
         <h6 class="mb-1">{{c.navn}}</h6>
         <h6 class="mb-1">{{c.alder}}</h6>
       </div>
     </b-list-group-item>
   </b-list-group>
-    </div>
+  </div>
 
-  <div >
-    <b-list-group id="list2">
-      <b-list-group-item href="#" class="flex-column align-items-start" v-for="co in caseOps" >
+  <div>
+    <b-list-group id="list3">
+      <b-list-group-item href="#" class="flex-column align-items-start" v-for="(co) in caseOps">
         <div class="d-flex w-100 justify-content-between">
-          <h6 class="mb-1">{{co.Fritekst}}</h6>
-          <h6 class="mb-1">{{co.Henvisning}}</h6>
+          <h6 class="mb-1">{{co.fritekst}}</h6>
+          <h6 class="mb-1">{{co.henvisning}}</h6>
         </div>
       </b-list-group-item>
     </b-list-group>
@@ -35,7 +36,6 @@
   <b-form-group label="Vælg Elever:" v-slot="{ ariaDescribedby }">
     <b-form-checkbox-group
         id="checkbox-group-2"
-        v-model="selected"
         :aria-describedby="ariaDescribedby"
         name="flavour-2">
       <b-form-checkbox value="Lea Sørensen">Lea Sørensen</b-form-checkbox>
@@ -62,14 +62,16 @@
 
   let citizens: Ref<Citizen[]> = ref([]);
   let caseOps: Ref<CaseOpening[]> = ref([]);
-  const selectedCitizen = ref("");
 
   citizenService.getCitizen().then(obj => {
     citizens.value = obj;
   })
 
-  caseOpeningService.getCaseOpeningByCitizen(selectedCitizen.value)
-
+  async function getCaseOps(citizen: Citizen) {
+    console.log(citizen);
+    let caseops = await caseOpeningService.getCaseOpeningByCitizen(citizen.id);
+    caseOps.value = caseops;
+  }
 
 </script>
 

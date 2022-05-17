@@ -49,6 +49,7 @@ namespace SOSU2022_BackEnd.Controllers
                 return _citizenService.GetAllCitizens()
                     .Select(c => new CitizenDto
                     {
+                        Id = c._id.ToString(),
                         Navn = c.Navn,
                         Alder = c.Alder
                     }).ToArray();

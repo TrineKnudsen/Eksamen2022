@@ -32,7 +32,7 @@ namespace SOSU2022_BackEnd.DataAcces.Repositories
 
         public List<CaseOpening> GetByCitizen(string citizenId)
         {
-            return _caseOpenings.Find(caseOpening => caseOpening.Id == new ObjectId(citizenId)).ToList();
+            return _caseOpenings.Find(caseOpening => caseOpening.BorgerId == new ObjectId(citizenId)).ToList();
         }
 
         public CaseOpening Update(string caseToUpdate, CaseOpening updatedCaseOpening)

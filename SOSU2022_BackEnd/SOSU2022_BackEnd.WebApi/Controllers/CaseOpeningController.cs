@@ -51,7 +51,7 @@ namespace SOSU2022_BackEnd.Controllers
                 var cos = _caseOpeningService.GetAll()
                     .Select(c => new CaseOpeningDto
                     {
-                        Id = c.Id,
+                        Id = c._id,
                         BorgerId = c.BorgerId,
                         Fritekst = c.Fritekst,
                         Henvisning = c.Fritekst
