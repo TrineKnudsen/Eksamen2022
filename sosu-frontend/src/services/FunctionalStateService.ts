@@ -1,4 +1,5 @@
 import http from "./http.client"
+import type {FunctionalState} from "@/models/FunctionalState";
 
 export class FunctionalStateService {
     async getFunctionalStateByCitizen(citizenId: string): Promise<FunctionalState[]>{

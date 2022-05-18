@@ -1,36 +1,44 @@
 <template>
 
   <div>
-    <select class="browser-default custom-select custom-select-lg mb-3" @change="getCaseOps($event), getGenerals($event), getFunctionals($event)">
+    <button style="margin-left: 1%; margin-bottom: 1%" @click="$router.push('/laerer/nyborger')" type="button" class="btn btn-outline-success">Ny borger</button><span></span>
+    <button style="margin-bottom: 1%; margin-left: 1%" type="button" class="btn btn-outline-danger">Slet borger</button>
+  </div>
+
+  <div style="background: cornflowerblue; padding: 1rem; border-radius: 0.3rem">
+    <select id="selectC" class="browser-default custom-select custom-select-lg mb-3" @change="getCaseOps($event), getGenerals($event), getFunctionals($event)">
+      <option>Vælg en borger</option>
       <option v-for="(c) in citizens" :value="c.id"> {{c.navn}} | {{c.alder}}</option>
     </select>
   </div>
 
-  <div id="caselist">
-    <b-list-group id="list3">Sager
-      <b-list-group-item href="#" class="flex-column align-items-start" v-for="(co) in caseOps">
-        <div class="d-flex w-100 justify-content-between">
-          <h6 class="mb-1">{{co.fritekst}}</h6>
-          <h6 class="mb-1">{{co.henvisning}}</h6>
-        </div>
-      </b-list-group-item>
-    </b-list-group>
-  </div>
+  <p>
+    <button style="width: 20%; margin-left: 2%; margin-top: 1%" class="btn btn-default; border-dark" type="button"
+            data-bs-toggle="collapse" data-bs-target="#collapse-cases">Sager</button>
 
-  <p id="toggles2">
-    <button class="btn btn-default" type="button"
+    <button style="width: 20%; margin-left: 2%; margin-top: 1%" class="btn btn-default; border-dark" type="button"
             data-bs-toggle="collapse" data-bs-target="#collapse-generals">Generelle oplysninger</button>
 
-    <button class="btn btn-default" type="button"
-            data-bs-toggle="collapse" data-bs-target="#collapse-functionals" style="background-color: yellow">Funktionsevnetilstande</button>
+    <button style="width: 20%; margin-left: 2%; background-color: yellow; margin-top: 1%;" class="btn btn default; border-dark" type="button"
+            data-bs-toggle="collapse" data-bs-target="#collapse-functionals">Funktionsevnetilstand</button>
 
-    <button class="btn btn-default" type="button"
-            v-b-toggle.collapse-health style="background-color: cornflowerblue">Helbredstilstande</button>
+    <button style="width: 20%; background-color: cornflowerblue; margin-left: 2%; margin-top: 1%" class="btn btn-default; border-dark" type="button"
+            data-bs-toggle="collapse" data-bs-target="#collapse-healthCon">Helbredstilstand</button>
   </p>
 
+  <div>
+  <div style="width: 50%" class="collapse" id="collapse-cases">
+    <div v-for="c in caseOps" class="card card-body">
+      <div>
+        <a>Fritekst</a>
+        <textarea class="form-control" rows="2" v-text="c.fritekst"></textarea>
+      </div>
+    </div>
+  </div>
+  </div>
 
-  <div class="col" id="list4">
-    <div class="collapse multi-collapse" id="collapse-generals">
+  <div>
+    <div style="width: 50%" class="collapse" id="collapse-generals">
       <div v-for="g in generals" class="card card-body">
         <div>
           <a>{{g.emne}}</a>
@@ -39,22 +47,27 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="collapse multi-collapse" id="collapse-functionals">
-      <div v-for="f in functionals" class="card card-body">
-        <div>
-          <a>{{f.emne}}</a>
-        </div>
-      </div>
-    </div>
+  <div style="width: 50%" >
+    <b-collapse id="collapse-functionals" class="mt-2" >
+      <b-card v-for="f in functionals">
+        <p class="card-text">
+          <b-button v-b-toggle.collapse-func-inner size="sm">{{f.emne}}</b-button>
+          <b-collapse id="collapse-func-inner" class="mt-2">
+            <b-card>{{f.subreading}}</b-card>
+          </b-collapse>
+        </p>
+      </b-card>
+    </b-collapse>
   </div>
 
 
 
   <div id="buttons">
-  <button @click="$router.push('/laerer/nyborger')" type="button" class="btn btn-outline-success">Ny borger</button>
+
   <button type="button" class="btn btn-outline-success">Opdater sagsoplysninger</button>
-    <button type="button" class="btn btn-outline-danger">Slet borger</button> |
+     |
     <button @click="$router.push('/laerer/nysag')" type="button" class="btn btn-outline-success">Ny sagsåbning</button>
     <button type="button" class="btn btn-outline-success">Rediger sag</button>
     <button type="button" class="btn btn-outline-danger">Slet sag</button>
@@ -146,8 +159,10 @@
   width: 60%;
 }
 
-#list4 {
-  margin-left: 30%;
+#selectC {
+  width: 100%;
+  text-align: center;
 }
+
 
 </style>
