@@ -1,7 +1,7 @@
 <template>
 
   <div>
-    <select class="browser-default custom-select custom-select-lg mb-3" @change="getCaseOps($event), getGenerals($event)">
+    <select class="browser-default custom-select custom-select-lg mb-3" @change="getCaseOps($event), getGenerals($event), getFunctionals($event)">
       <option v-for="(c) in citizens" :value="c.id"> {{c.navn}} | {{c.alder}}</option>
     </select>
   </div>
@@ -19,11 +19,10 @@
 
   <p id="toggles2">
     <button class="btn btn-default" type="button"
-            data-bs-toggle="collapse" data-bs-target="#collapse-generals"
-    >Generelle oplysninger</button>
+            data-bs-toggle="collapse" data-bs-target="#collapse-generals">Generelle oplysninger</button>
 
     <button class="btn btn-default" type="button"
-            v-b-toggle.collapse-functions style="background-color: yellow">Funktionsevnetilstande</button>
+            data-bs-toggle="collapse" data-bs-target="#collapse-functionals" style="background-color: yellow">Funktionsevnetilstande</button>
 
     <button class="btn btn-default" type="button"
             v-b-toggle.collapse-health style="background-color: cornflowerblue">Helbredstilstande</button>
@@ -37,6 +36,14 @@
           <a>{{g.emne}}</a>
           <b-button pill variant="outline-info" data-toggle="tooltip">?</b-button>
           <textarea class="form-control" rows="2" v-text="g.tekst"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="collapse multi-collapse" id="collapse-functionals">
+      <div v-for="f in functionals" class="card card-body">
+        <div>
+          <a>{{f.emne}}</a>
         </div>
       </div>
     </div>
@@ -80,14 +87,18 @@
   import {CaseOpeningService} from "@/services/CaseOpeningService";
   import {GeneralInfoService} from "@/services/GeneralInfoService";
   import type {GeneralInfo} from "@/models/GeneralInfo";
+  import type {FunctionalState} from "@/models/FunctionalState";
+  import {FunctionalStateService} from "@/services/FunctionalStateService";
   const citizenService = new CitizenService();
   const caseOpeningService = new CaseOpeningService();
   const generalInfoService = new GeneralInfoService();
+  const functionalStateService = new FunctionalStateService();
   let selectedC: null;
 
   let citizens: Ref<Citizen[]> = ref([]);
   let caseOps: Ref<CaseOpening[]> = ref([]);
-  let generals: Ref<GeneralInfo[]> = ref([])
+  let generals: Ref<GeneralInfo[]> = ref([]);
+  let functionals: Ref<FunctionalState[]> = ref([]);
 
   citizenService.getCitizen().then(obj => {
     citizens.value = obj;
@@ -101,6 +112,11 @@
   async function getGenerals(event: { target: { value: string; }; }) {
     let generalInfo = await  generalInfoService.getGeneralByCitizen(event.target.value);
     generals.value = generalInfo;
+  }
+
+  async function getFunctionals(event: { target: { value: string; }; }){
+    let functionalState = await functionalStateService.getFunctionalStateByCitizen(event.target.value);
+    functionals.value = functionalState;
   }
 
 </script>

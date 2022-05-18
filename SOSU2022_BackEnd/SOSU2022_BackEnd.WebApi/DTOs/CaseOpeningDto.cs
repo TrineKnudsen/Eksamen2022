@@ -8,5 +8,6 @@ namespace SOSU2022_BackEnd.DTOs
         public ObjectId BorgerId { get; set; }
         public string Henvisning { get; set; }
         public string Fritekst { get; set; }
+        
     }
 }
