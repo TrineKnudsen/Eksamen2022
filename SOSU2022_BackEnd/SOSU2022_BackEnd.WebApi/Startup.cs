@@ -42,6 +42,8 @@ namespace SOSU2022_BackEnd
             services.AddScoped<ICitizenDatabaseSettings, SOSUDatabaseSettings>();
             services.AddScoped<ICaseOpeningRepository, CaseOpeningRepository>();
             services.AddScoped<ICaseOpeningService, CaseOpeningService>();
+            services.AddScoped<IGeneralInfoRepository, GeneralInfoRepository>();
+            services.AddScoped<IGeneralInfoService, GeneralInfoService>();
 
             services.AddCors(options => 
                 {options.AddPolicy("Dev-cors", policy =>

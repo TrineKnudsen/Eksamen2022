@@ -1,13 +1,13 @@
 <template>
 
   <div>
-    <select class="browser-default custom-select custom-select-lg mb-3" @change="getCaseOps($event)">
+    <select class="browser-default custom-select custom-select-lg mb-3" @change="getCaseOps($event), getGenerals($event)">
       <option v-for="(c) in citizens" :value="c.id"> {{c.navn}} | {{c.alder}}</option>
     </select>
   </div>
 
-  <div>
-    <b-list-group id="list3">
+  <div id="caselist">
+    <b-list-group id="list3">Sager
       <b-list-group-item href="#" class="flex-column align-items-start" v-for="(co) in caseOps">
         <div class="d-flex w-100 justify-content-between">
           <h6 class="mb-1">{{co.fritekst}}</h6>
@@ -16,6 +16,33 @@
       </b-list-group-item>
     </b-list-group>
   </div>
+
+  <p id="toggles2">
+    <button class="btn btn-default" type="button"
+            data-bs-toggle="collapse" data-bs-target="#collapse-generals"
+    >Generelle oplysninger</button>
+
+    <button class="btn btn-default" type="button"
+            v-b-toggle.collapse-health>Helbredstilstande</button>
+
+    <button class="btn btn-default" type="button"
+            v-b-toggle.collapse-functions>Funktionsevnetilstande</button>
+  </p>
+
+
+  <div class="col" id="list4">
+    <div class="collapse multi-collapse" id="collapse-generals">
+      <div v-for="g in generals" class="card card-body">
+        <div>
+          <a>{{g.emne}}</a>
+          <b-button pill variant="outline-info" data-toggle="tooltip">?</b-button>
+          <textarea class="form-control" rows="2" v-text="g.tekst"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
   <div id="buttons">
   <button @click="$router.push('/laerer/nyborger')" type="button" class="btn btn-outline-success">Ny borger</button>
@@ -51,12 +78,16 @@
   import {ref} from "vue";
   import type {CaseOpening} from "@/models/CaseOpening";
   import {CaseOpeningService} from "@/services/CaseOpeningService";
+  import {GeneralInfoService} from "@/services/GeneralInfoService";
+  import type {GeneralInfo} from "@/models/GeneralInfo";
   const citizenService = new CitizenService();
   const caseOpeningService = new CaseOpeningService();
+  const generalInfoService = new GeneralInfoService();
   let selectedC: null;
 
   let citizens: Ref<Citizen[]> = ref([]);
   let caseOps: Ref<CaseOpening[]> = ref([]);
+  let generals: Ref<GeneralInfo[]> = ref([])
 
   citizenService.getCitizen().then(obj => {
     citizens.value = obj;
@@ -67,21 +98,40 @@
     caseOps.value = caseops;
   }
 
+  async function getGenerals(event: { target: { value: string; }; }) {
+    let generalInfo = await  generalInfoService.getGeneralByCitizen(event.target.value);
+    generals.value = generalInfo;
+  }
+
 </script>
 
 <style scoped>
 #containerlist {
   width:50%;
 }
-#list2 {
+#caselist {
   float:left;
-  width:49.9%;
-  padding-left: 10%;
+  width:25%;
+  padding-left: 1%;
 }
+
 #student {
   margin-top: 5%;
 }
 #buttons {
   margin-top: 15%;
 }
+
+#toggles2 {
+  margin-left: 30%;
+}
+
+#collapse-generals {
+  width: 60%;
+}
+
+#list4 {
+  margin-left: 30%;
+}
+
 </style>

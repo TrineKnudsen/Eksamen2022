@@ -12,7 +12,7 @@
       <b-list-group-item active>Brækket hofte</b-list-group-item>
     </b-list-group>
   </div>
-
+  v-b-toggle.collapse-generals
   <p>
     <button
       class="btn btn-default"
@@ -33,6 +33,7 @@
       >Funktionsevnetilstande
     </button>
   </p>
+
   <div class="col">
     <div class="collapse multi-collapse" id="multicollapse">
       <div class="card card-body">
