@@ -23,10 +23,10 @@
     >Generelle oplysninger</button>
 
     <button class="btn btn-default" type="button"
-            v-b-toggle.collapse-health>Helbredstilstande</button>
+            v-b-toggle.collapse-functions style="background-color: yellow">Funktionsevnetilstande</button>
 
     <button class="btn btn-default" type="button"
-            v-b-toggle.collapse-functions>Funktionsevnetilstande</button>
+            v-b-toggle.collapse-health style="background-color: cornflowerblue">Helbredstilstande</button>
   </p>
 
 
