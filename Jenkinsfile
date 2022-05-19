@@ -3,7 +3,17 @@ pipeline {
     triggers {
         pollSCM("* * * * *")
     }
+
+    enviroment {
+        COMMITMSG = sh(returnStdout: true, script: "git log -1 --oneline")
+    }
     stages {
+        stage ("Startup"){
+        steps{
+        builddescription env.COMMITMSG
+        }
+        }
+        
         stage ("Build") {
             parallel {
                 stage("Build api"){
@@ -36,5 +46,12 @@ pipeline {
         
         }       
     }  
+    stage ("Test"){
+        steps {
+            dir("SOSU2022_BackEnd"){
+                sh "dotnet test"
+            }
+        }
+    }
 }
 }
