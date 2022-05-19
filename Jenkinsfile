@@ -13,6 +13,11 @@ pipeline {
                 sh "dotnet build SOSU2022_BackEnd.sln"
                 }
             }
+            post {
+                always{
+                    sh "echo 'Building API finished'"
+                }
+            }
                 }
 
        
