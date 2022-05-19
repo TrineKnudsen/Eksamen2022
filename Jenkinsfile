@@ -46,11 +46,31 @@ pipeline {
             }
         
             
-    }  
+    }
     stage ("Test"){
         steps {
             dir("SOSU2022_BackEnd/SOSU2022_BackEnd.Domain"){
              
+            }
+        }
+    }
+    stage("Deploy"){
+        parallel {
+            stage("Frontend"){
+                steps{
+                    dir("sosu-frontend"){
+                        sh "docker build -t sosu-web ."
+                        sh "docker run --name sosu-web-container -d -p 8090:80 sosu-web"
+                    }
+                }
+            }
+            stage("API"){
+                steps{
+                    dir("SOSU2022_BackEnd"){
+                        sh "docker build -t sosu-api ."
+                        sh "docker run --name sosu-api-container -d -p 8091:80 sosu-api"
+                    }
+                }
             }
         }
     }
