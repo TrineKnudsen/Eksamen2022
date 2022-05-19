@@ -7,32 +7,22 @@ pipeline {
         stage ("Build") {
             parallel {
                 stage("Build api"){
-        when {
-        anyOf {
-        changeset "SOSU2022_BackEnd/SOSU2022_BackEnd.Domain"
-        changeset "SOSU2022_BackEnd/SOSU2022_BackEnd.Core"
-        changeset "SOSU2022_BackEnd/SOSU2022_BackEnd.DataAccess"
-        changeset "SOSU2022_BackEnd/SOSU2022_BackEnd.WepApi"
-        }
-        }
- 
-            steps {
-                sh "dotnet build SOSU2022_BackEnd/SOSU2022_BackEnd.sln"
+                steps{
+                sh"echo 'We are building the api'"
+                dir("SOSU2022_BackEnd"){
+                sh "dotnet build SOSU2022_BackEnd.WepApi.csproj"
+                }
             }
-            }
+                }
+
+       
         stage("Build frontend"){
         steps{
         sh ""
         }
         }
-            }
-        }
-
-    
-
-       
-    }
-
-
-  
+        
+        }       
+    }  
+}
 }
