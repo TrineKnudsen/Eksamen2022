@@ -28,12 +28,7 @@ pipeline {
             }
         }
 
-        
-        post {
-            changed {
-                sh "echo 'Pipeline finished'"
-            }
-        }
+    
 
        
     }
