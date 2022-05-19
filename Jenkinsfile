@@ -44,19 +44,7 @@ pipeline {
         }
         }
         
-        }
-        
-     stage("Deploy") {
-     parallel {
-     stage("Frontend"){
-     steps{
-     dir("sosu-frontend"){
-     sh "docker build -t sosu-web ."
-     sh "docker run --name sosu-web-container -d -p 8090:80 sosu-web"
-     }
-     }
-     }
-     }}       
+        }       
     }  
     stage ("Test"){
         steps {
