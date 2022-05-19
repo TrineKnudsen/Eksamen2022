@@ -17,6 +17,13 @@ pipeline {
                 always{
                     sh "echo 'Building API finished'"
                 }
+                success{
+                sh "echo 'Building API succeeded'"
+                }
+                failure {
+                sh "echo 'Building API failed'"
+                }
+                
             }
                 }
 
