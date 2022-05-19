@@ -4,7 +4,9 @@ pipeline {
         pollSCM("* * * * *")
     }
     stages {
-        stage("Build"){
+        stage ("Build") {
+            parallel {
+                stage("Build api"){
         when {
         anyOf {
         changeset "SOSU2022_BackEnd/SOSU2022_BackEnd.Domain"
@@ -13,9 +15,29 @@ pipeline {
         changeset "SOSU2022_BackEnd/SOSU2022_BackEnd.WepApi"
         }
         }
+ 
             steps {
                 sh "dotnet build SOSU2022_BackEnd/SOSU2022_BackEnd.sln"
             }
+            }
+        stage("Build frontend"){
+        steps{
+        sh ""
         }
+        }
+            }
+        }
+
+        
+        post {
+            changed {
+                sh "echo 'Pipeline finished'"
+            }
+        }
+
+       
     }
+
+
+  
 }
