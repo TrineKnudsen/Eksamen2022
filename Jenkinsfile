@@ -58,7 +58,7 @@ pipeline {
                 steps{
                     dir("sosu-frontend"){
                         sh "docker build -t sosu-web ."
-                        sh "docker run --name sosu-web-container -d -p 8090:80 sosu-web"
+                        sh "docker run --name sosu-web-container-1 -d -p 8070:80 sosu-web"
                     }
                 }
     }
