@@ -40,7 +40,7 @@ pipeline {
        
         stage("Build frontend"){
         steps{
-        
+            sh ""
         }
         }
             }
