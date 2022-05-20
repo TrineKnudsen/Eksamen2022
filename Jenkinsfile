@@ -57,7 +57,6 @@ pipeline {
     stage("Deploy"){
                 steps{
                     dir("sosu-frontend"){
-                        sh "npm run build --prod"
                         sh "docker build -t sosu-web ."
                         sh "docker run --name sosu-web-container -d -p 8090:80 sosu-web"
                     }
