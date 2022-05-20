@@ -40,7 +40,8 @@ pipeline {
        
         stage("Build frontend"){
         steps{
-        sh ""
+        sh "npm install"
+        sh "npm run build"
         }
         }
             }
@@ -57,7 +58,7 @@ pipeline {
     stage("Deploy"){
                 steps{
                     dir("sosu-frontend"){
-                        sh "npm run build"
+                       
                         sh "docker build -t sosu-web ."
                         sh "docker run --name sosu-web-container-1 -d -p 8070:80 sosu-web"
                     }
