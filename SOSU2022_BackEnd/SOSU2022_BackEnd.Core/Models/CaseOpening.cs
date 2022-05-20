@@ -4,9 +4,9 @@ namespace SOSU2022_BacEnd.Domain.IRepositories
 {
     public class CaseOpening
     {
-        public ObjectId _id { get; set; }
-        public ObjectId BorgerId { get; set; }
-        public string Henvisning { get; set; }
-        public string Fritekst { get; set; }
+        public string Id { get; set; }
+        public string CitizenId { get; set; }
+        public string Reference { get; set; }
+        public string Summary { get; set; }
     }
 }

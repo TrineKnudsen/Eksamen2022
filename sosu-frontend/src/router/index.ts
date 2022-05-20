@@ -31,7 +31,7 @@ const router = createRouter({
       component: NewCitizenView,
     },
     {
-      path: "/laerer/nysag",
+      path: "/laerer/nysag/:citizenId",
       name: "nysag",
       component: NewCaseView,
     },

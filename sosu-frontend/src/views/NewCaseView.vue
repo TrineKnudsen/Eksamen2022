@@ -11,17 +11,33 @@
       </div>
       <div class="form-row">
         <label>Hvem retter henvendelse?</label>
-        <textarea class="form-control" rows="3"></textarea>
+        <textarea v-model="text" class="form-control" rows="3"></textarea>
       </div>
-    <button @click="$router.push('/laerer')" type="submit" class="btn btn-primary">Gem sag</button>
+      <div>
+        <label>BorgerId</label><textarea></textarea>
+      </div>
+    <button @click="saveCaseOpening" type="submit" class="btn btn-primary">Gem sag</button>
     </div>
   </form>
 </template>
 
-<script>
-export default {
-  name: "NewCaseView"
+<script setup lang="ts">
+import {ref} from "vue";
+import {CaseOpeningService} from "@/services/CaseOpeningService";
+
+const caseOpeningService = new CaseOpeningService();
+let text = ref("");
+let reference = ref("");
+let citizenId = ref("");
+let citizen:string = "";
+
+
+function saveCaseOpening(this: any){
+  citizen = this.href.substring(this.href.lastIndexOf("/")+1);
+  console.log(citizen);
+  caseOpeningService.createCaseOpening(citizen, text.value, reference.value);
 }
+
 </script>
 
 <style scoped>

@@ -4,8 +4,8 @@ namespace SOSU2022_BackEnd.Core.Models
 {
     public class Citizen
     {
-        public ObjectId _id { get; set; }
-        public string Navn { get; set; }
-        public int Alder { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public int Age { get; set; }
     }
 }

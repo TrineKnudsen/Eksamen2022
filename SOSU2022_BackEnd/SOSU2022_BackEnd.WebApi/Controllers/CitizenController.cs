@@ -26,19 +26,26 @@ namespace SOSU2022_BackEnd.Controllers
         [HttpPost]
         public ActionResult<CitizenDto> CreateCitizen([FromBody] CitizenDto citizenDto)
         {
-            var citizen = _citizenService.CreateCitizen(new Citizen
+            try
             {
-                Navn = citizenDto.Navn,
-                Alder = citizenDto.Alder
-            });
+                var citizen = _citizenService.CreateCitizen(new Citizen
+                {
+                    Name = citizenDto.Name,
+                    Age = citizenDto.Age
+                });
 
-            var citizenToReturn = new CitizenDto
+                var citizenToReturn = new CitizenDto
+                {
+                    Name = citizen.Name,
+                    Age = citizen.Age
+                };
+
+                return Created("https//:localhost/api/Citizen", citizenToReturn);
+            }
+            catch (Exception e)
             {
-                Navn = citizen.Navn,
-                Alder = citizen.Alder
-            };
-
-            return Created("https//:localhost/api/citizen", citizenToReturn);
+                return StatusCode(500, e.Message);
+            }
         }
 
         [HttpGet]
@@ -49,9 +56,9 @@ namespace SOSU2022_BackEnd.Controllers
                 return _citizenService.GetAllCitizens()
                     .Select(c => new CitizenDto
                     {
-                        Id = c._id.ToString(),
-                        Navn = c.Navn,
-                        Alder = c.Alder
+                        Id = c.Id,
+                        Name = c.Name,
+                        Age = c.Age
                     }).ToArray();
             }
             catch (Exception e)
@@ -63,24 +70,38 @@ namespace SOSU2022_BackEnd.Controllers
         [HttpPatch("{cToUpdate}")]
         public ActionResult<CitizenDto> UpdateCitizenDto(string cToUpdate, [FromBody] CitizenDto citizenDto)
         {
-            var ci = _citizenService.Update(cToUpdate, new Citizen
+            try
             {
-                Navn = citizenDto.Navn,
-                Alder = citizenDto.Alder
-            });
+                var ci = _citizenService.Update(cToUpdate, new Citizen
+                {
+                    Name = citizenDto.Name,
+                    Age = citizenDto.Age
+                });
 
-            var cDtoToReturn = new CitizenDto
+                var cDtoToReturn = new CitizenDto
+                {
+                    Name = ci.Name,
+                    Age = ci.Age
+                };
+                return Ok(cDtoToReturn);
+            }
+            catch (Exception e)
             {
-                Navn = ci.Navn,
-                Alder = ci.Alder
-            };
-            return Ok(cDtoToReturn);
+                return StatusCode(500, e.Message);
+            }
         }
 
         [HttpDelete("{cToDelete}")]
-        public void DeleteCitizen(string cToDelete, [FromBody] CitizenDto citizenDto)
+        public void DeleteCitizen(string cToDelete)
         {
-            _citizenService.Delete(cToDelete);
+            try
+            {
+                _citizenService.Delete(cToDelete);
+            }
+            catch (Exception e)
+            {
+                StatusCode(500, e.Message);
+            }
         }
     }
 }

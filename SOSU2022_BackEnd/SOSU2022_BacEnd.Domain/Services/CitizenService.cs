@@ -23,7 +23,7 @@ namespace SOSU2022_BacEnd.Domain.Services
 
         public Citizen CreateCitizen(Citizen citizen)
         {
-            return _citizenRepository.CreateCitizen(citizen);
+            return _citizenRepository.Create(citizen);
         }
 
         public Citizen GetCitizen(int id)

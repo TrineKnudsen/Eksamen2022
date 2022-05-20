@@ -2,7 +2,7 @@ export interface FunctionalState {
     Overemne: string;
     Emne: string;
     Subreading: string;
-    NuværendeNiveau: stirng;
+    NuværendeNiveau: string;
     ForventetNiveau: string;
     FagligNotat: string;
     Udførelse: string;

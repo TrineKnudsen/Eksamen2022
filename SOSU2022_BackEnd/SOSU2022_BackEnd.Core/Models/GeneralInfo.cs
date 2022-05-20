@@ -2,9 +2,11 @@ using MongoDB.Bson;
 
 namespace SOSU2022_BackEnd.Core.Models
 {
-    public class GeneralInfo : CaseInformation
+    public class GeneralInfo
     {
-        public string Tekst { get; set; }
-        public string Hjaelp { get; set; }
+        public string Id { get; set; }
+        public string CitizenId { get; set; }
+        public string Subject { get; set; }
+        public string Text { get; set; }
     }
 }

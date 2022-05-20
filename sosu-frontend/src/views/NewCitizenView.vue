@@ -7,35 +7,32 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="firstname">Fornavn</label>
-        <input type="text" class="form-control" id="firstname" placeholder="">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="lastname">Efternavn</label>
-        <input type="text" class="form-control" id="lastname" placeholder="">
+        <input v-model="name" type="text" class="form-control" id="firstname" placeholder="">
       </div>
     </div>
-    <div class="form-group">
-      <label for="inputAddress">Adresse</label>
-      <input type="text" class="form-control" id="inputAddress" placeholder="">
-    </div>
-    <div class="form-group">
-      <label for="inputAddress2">Postnummer</label>
-      <input type="text" class="form-control" id="inputAddress2" placeholder="">
-    </div>
+
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="inputCity">By</label>
-        <input type="text" class="form-control" id="inputCity">
+        <label for="inputCity">Alder</label>
+        <input v-model="age" type="text" class="form-control" id="inputCity">
       </div>
     </div>
-    <button @click="$router.push('/laerer')" type="submit" class="btn btn-primary">Gem borger</button>
+    <button @click="saveCitizen" type="submit" class="btn btn-primary">Gem borger</button>
   </form>
 </template>
 
-<script>
-export default {
-  name: "NewCitizenView"
+<script setup lang="ts">
+import {ref} from "vue";
+import {CitizenService} from "@/services/CitizenService";
+
+const citizenService = new CitizenService();
+let name =ref("");
+let age = ref("");
+
+function saveCitizen(){
+  citizenService.createCitizen(name.value, age.value)
 }
+
 </script>
 
 <style scoped>

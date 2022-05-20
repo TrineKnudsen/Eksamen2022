@@ -6,9 +6,9 @@
   </div>
 
   <div style="background: cornflowerblue; padding: 1rem; border-radius: 0.3rem">
-    <select id="selectC" class="browser-default custom-select custom-select-lg mb-3" @change="getCaseOps($event), getGenerals($event), getFunctionals($event)">
+    <select id="selectC" class="browser-default custom-select custom-select-lg mb-3" v-model="selectedC" @change="getCaseOps($event), getGenerals($event), getFunctionals($event)">
       <option>Vælg en borger</option>
-      <option v-for="(c) in citizens" :value="c.id"> {{c.navn}} | {{c.alder}}</option>
+      <option v-for="(c) in citizens" :value="c.id"> {{c.name}} | {{c.age}}</option>
     </select>
   </div>
 
@@ -31,7 +31,7 @@
     <div v-for="c in caseOps" class="card card-body">
       <div>
         <a>Fritekst</a>
-        <textarea class="form-control" rows="2" v-text="c.fritekst"></textarea>
+        <textarea class="form-control" rows="2" v-text="c.summary"></textarea>
       </div>
     </div>
   </div>
@@ -39,56 +39,42 @@
 
   <div>
     <div style="width: 50%" class="collapse" id="collapse-generals">
-      <div v-for="g in generals" class="card card-body">
+      <div v-for="(g) in generals" class="card card-body">
         <div>
-          <a>{{g.emne}}</a>
+          <a>{{g.subject}}</a>
           <b-button pill variant="outline-info" data-toggle="tooltip">?</b-button>
-          <textarea class="form-control" rows="2" v-text="g.tekst"></textarea>
+          <textarea class="form-control" rows="2" v-text="g.text"></textarea>
+          <button style="margin-left: 70%; margin-top: 1%" type="button" class="btn btn-success" @click="updateGeneral({selectedC, g})">Gem {{g.subject}}</button>
         </div>
       </div>
     </div>
   </div>
 
-  <div style="width: 50%" >
+  <div style="width: 50%; border-color:yellow" >
     <b-collapse id="collapse-functionals" class="mt-2" >
       <b-card v-for="f in functionals">
         <p class="card-text">
           <b-button v-b-toggle.collapse-func-inner size="sm">{{f.emne}}</b-button>
           <b-collapse id="collapse-func-inner" class="mt-2">
-            <b-card>{{f.subreading}}</b-card>
+            <b-card><b-button>{{f.subreading}}</b-button></b-card>
           </b-collapse>
         </p>
       </b-card>
     </b-collapse>
   </div>
 
-
-
   <div id="buttons">
 
   <button type="button" class="btn btn-outline-success">Opdater sagsoplysninger</button>
      |
-    <button @click="$router.push('/laerer/nysag')" type="button" class="btn btn-outline-success">Ny sagsåbning</button>
+    <button @click="$router.push('/laerer/nysag/' + selectedC)" type="button" class="btn btn-outline-success">Ny sagsåbning</button>
     <button type="button" class="btn btn-outline-success">Rediger sag</button>
     <button type="button" class="btn btn-outline-danger">Slet sag</button>
   </div>
 
-  <div id="student">
-  <b-form-group label="Vælg Elever:" v-slot="{ ariaDescribedby }">
-    <b-form-checkbox-group
-        id="checkbox-group-2"
-        :aria-describedby="ariaDescribedby"
-        name="flavour-2">
-      <b-form-checkbox value="Lea Sørensen">Lea Sørensen</b-form-checkbox>
-      <b-form-checkbox value="Simon Jensen">Simon Jensen</b-form-checkbox>
-      <b-form-checkbox value="Michelle Christensen">Michelle Christensen</b-form-checkbox>
-      <b-form-checkbox value="Trine Jacobsen">Trine Jacobsen</b-form-checkbox>
-    </b-form-checkbox-group>
-  </b-form-group>
 
-  Valgte elever: <strong>{{ selected }}</strong>
+  Valgt borger: <strong>{{ selectedC }}</strong>
 
-  </div>
 </template>
 
 <script setup lang="ts">
@@ -106,8 +92,8 @@
   const caseOpeningService = new CaseOpeningService();
   const generalInfoService = new GeneralInfoService();
   const functionalStateService = new FunctionalStateService();
-  let selectedC: null;
 
+  let selectedC: "";
   let citizens: Ref<Citizen[]> = ref([]);
   let caseOps: Ref<CaseOpening[]> = ref([]);
   let generals: Ref<GeneralInfo[]> = ref([]);
@@ -127,9 +113,17 @@
     generals.value = generalInfo;
   }
 
+  async function saveGeneral(selectedCitizen: string, general: GeneralInfo){
+    generalInfoService.saveGeneral(selectedCitizen, general);
+  }
+
   async function getFunctionals(event: { target: { value: string; }; }){
     let functionalState = await functionalStateService.getFunctionalStateByCitizen(event.target.value);
     functionals.value = functionalState;
+  }
+
+  async function openSub(){
+    document.getElementById("subDialog");
   }
 
 </script>

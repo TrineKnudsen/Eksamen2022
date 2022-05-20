@@ -26,10 +26,10 @@ namespace SOSU2022_BackEnd.Controllers
                 return _generalInfoService.GetByCitizen(citizenId)
                     .Select(g => new GeneralInfoDto
                     {
-                        Overemne = g.Overemne,
-                        Emne = g.Emne,
-                        Hjaelp = g.Hjaelp,
-                        Tekst = g.Tekst,
+                        Id = g.Id,
+                        CitizenId = g.CitizenId,
+                        Subject = g.Subject,
+                        Text = g.Text,
                     }).ToArray();
             }
             catch (Exception e)

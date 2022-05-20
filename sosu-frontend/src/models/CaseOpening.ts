@@ -1,5 +1,5 @@
 export interface CaseOpening {
-    BorgerId: string;
-    Henvisning: string;
-    Fritekst: string;
+    citizenId: string;
+    reference: string;
+    summary: string;
 }

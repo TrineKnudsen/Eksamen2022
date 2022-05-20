@@ -1,5 +1,5 @@
 export interface Citizen {
     id: string;
-    navn: string;
-    alder: number;
+    name: string;
+    age: number;
 }

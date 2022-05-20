@@ -28,39 +28,43 @@ namespace SOSU2022_BackEnd.Controllers
         [HttpPost]
         public ActionResult<CaseOpeningDto> CreateCaseOpening([FromBody] CaseOpeningDto caseOpeningDto)
         {
-            var co = _caseOpeningService.Create(new CaseOpening
+            try
             {
-                Henvisning = caseOpeningDto.Henvisning,
-                Fritekst = caseOpeningDto.Fritekst,
-            });
+                var co = _caseOpeningService.Create(new CaseOpening
+                {
+                    CitizenId = caseOpeningDto.CitizenId,
+                    Reference = caseOpeningDto.Reference,
+                    Summary = caseOpeningDto.Summary,
+                });
 
-            var dtoToReturn = new CaseOpeningDto
+                var dtoToReturn = new CaseOpeningDto
+                {
+                    CitizenId = co.CitizenId,
+                    Reference = co.Reference,
+                    Summary = co.Summary,
+                };
+
+                return Created("https//:localhost/api/CaseOpening", dtoToReturn);
+            }
+            catch (Exception e)
             {
-                Henvisning = co.Henvisning,
-                Fritekst = co.Fritekst,
-            };
-
-            return Created("https//:localhost/api/CaseOpening", caseOpeningDto);
+                return StatusCode(500, e.Message);
+            }
         }
 
         [HttpGet]
-        public ActionResult<List<CaseOpening>> GetAllCaseOpenings()
+        public ActionResult<CaseOpeningDto[]> GetAllCaseOpenings()
         {
             try
             {
-                var cos = _caseOpeningService.GetAll()
-                    .Select(c => new CaseOpeningDto
+                return _caseOpeningService.GetAll()
+                    .Select(co => new CaseOpeningDto
                     {
-                        Id = c._id,
-                        BorgerId = c.BorgerId,
-                        Fritekst = c.Fritekst,
-                        Henvisning = c.Fritekst
-                    }).ToList();
-
-                return Ok(new CaseOpeningDtos
-                {
-                    List = cos
-                });
+                        Id = co.Id,
+                        CitizenId = co.CitizenId,
+                        Reference = co.Reference,
+                        Summary = co.Summary,
+                    }).ToArray();
             }
             catch (Exception e)
             {
@@ -74,10 +78,12 @@ namespace SOSU2022_BackEnd.Controllers
             try
             {
                 return _caseOpeningService.GetByCitizen(citizenId)
-                    .Select(c => new CaseOpeningDto
+                    .Select(co => new CaseOpeningDto
                     {
-                        Henvisning = c.Henvisning,
-                        Fritekst = c.Fritekst
+                        Id = co.Id,
+                        CitizenId = co.CitizenId,
+                        Reference = co.Reference,
+                        Summary = co.Summary,
                     }).ToArray();
             }
             catch (Exception e)
@@ -87,26 +93,45 @@ namespace SOSU2022_BackEnd.Controllers
         }
 
         [HttpPatch("{coToUpdate}")]
-        public ActionResult<CaseOpeningDto> UpdateCaseOpeningDto(string coToUpdate, [FromBody] CaseOpeningDto caseOpeningDto)
+        public ActionResult<CaseOpeningDto> UpdateCaseOpeningDto(string coToUpdate,
+            [FromBody] CaseOpeningDto caseOpeningDto)
         {
-            var co = _caseOpeningService.Update(coToUpdate, new CaseOpening
+            try
             {
-                Henvisning = caseOpeningDto.Henvisning,
-                Fritekst = caseOpeningDto.Fritekst,
-            });
+                var co = _caseOpeningService.Update(coToUpdate, new CaseOpening
+                {
+                    Id = caseOpeningDto.Id,
+                    CitizenId = coToUpdate,
+                    Reference = caseOpeningDto.Reference,
+                    Summary = caseOpeningDto.Summary,
+                });
 
-            var coDtoToReturn = new CaseOpeningDto
+                var coDtoToReturn = new CaseOpeningDto
+                {
+                    Id = co.Id,
+                    CitizenId = co.CitizenId,
+                    Reference = co.Reference,
+                    Summary = co.Summary,
+                };
+                return Ok(coDtoToReturn);
+            }
+            catch (Exception e)
             {
-                Henvisning = co.Henvisning,
-                Fritekst = co.Fritekst,
-            };
-            return Ok(coDtoToReturn);
+                return StatusCode(500, e.Message);
+            }
         }
 
         [HttpDelete("{coToDelete}")]
-        public void DeleteCaseOpening(string coToDelete, [FromBody] CaseOpeningDto caseOpeningDto)
+        public void DeleteCaseOpening(string coToDelete)
         {
-            _caseOpeningService.Delete(coToDelete);
+            try
+            {
+                _caseOpeningService.Delete(coToDelete);
+            }
+            catch (Exception e)
+            {
+                StatusCode(500, e.Message);
+            }
         }
     }
 }

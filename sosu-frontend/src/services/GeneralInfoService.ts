@@ -7,4 +7,8 @@ export class GeneralInfoService {
         const res = await http.get<GeneralInfo[]>("/api/GeneralInfo/" + citizenId);
         return res.data;
     }
+
+    saveGeneral(selectedCitizen: string, general: GeneralInfo) {
+        
+    }
 }
