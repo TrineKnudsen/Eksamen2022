@@ -1,2 +1,2 @@
 FROM nginx
-COPY sosu-frontend/dist /usr/share/nginx/html
+COPY dist/index.html /usr/share/nginx/html
