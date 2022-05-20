@@ -32,6 +32,7 @@
       <div>
         <a>Fritekst</a>
         <textarea class="form-control" rows="2" v-text="c.summary"></textarea>
+        <b-button @click="removeCase(c.id)">Fjern sag</b-button>
       </div>
     </div>
   </div>
@@ -150,6 +151,10 @@
 
   function saveCase(){
     caseOpeningService.createCaseOpening(selectedC.value, reference.value, text.value);
+  }
+
+  function removeCase(caseToDelete: string){
+    caseOpeningService.deleteCaseOpening(caseToDelete);
   }
 
 </script>

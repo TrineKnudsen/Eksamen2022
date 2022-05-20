@@ -17,8 +17,11 @@ export class CaseOpeningService {
     }
 
     async getCaseOpeningByCitizen(citizenId: string): Promise<CaseOpening[]> {
-        console.log(citizenId);
         const res = await http.get<CaseOpening[]>("/api/CaseOpening/"+citizenId)
         return res.data;
+    }
+
+    async deleteCaseOpening(coToDelete: string) {
+        await http.delete<CaseOpening>("api/CaseOpening/"+coToDelete);
     }
 }
