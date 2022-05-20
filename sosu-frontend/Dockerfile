@@ -1,2 +1,2 @@
 FROM nginx
-COPY dist/index.html /usr/share/nginx/html
+COPY dist/assets/ /usr/share/nginx/html
