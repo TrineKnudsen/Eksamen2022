@@ -6,7 +6,7 @@
   </div>
 
   <div style="background: cornflowerblue; padding: 1rem; border-radius: 0.3rem">
-    <select id="selectC" class="browser-default custom-select custom-select-lg mb-3" v-model="selectedC" @change="getCaseOps($event), getGenerals($event), getFunctionals($event)">
+    <select id="selectC" class="browser-default custom-select custom-select-lg mb-3" v-model="selectedC" @change="getCaseOps(selectedC), getGenerals(selectedC), getFunctionals(selectedC)">
       <option>Vælg en borger</option>
       <option v-for="(c) in citizens" :value="c.id"> {{c.name}} | {{c.age}}</option>
     </select>
@@ -54,7 +54,7 @@
     <b-collapse id="collapse-functionals" class="mt-2" >
       <b-card v-for="f in functionals">
         <p class="card-text">
-          <b-button v-b-toggle.collapse-func-inner size="sm">{{f.emne}}</b-button>
+          <b-button v-b-toggle.collapse-func-inner size="sm">{{f.subject}}</b-button>
           <b-collapse id="collapse-func-inner" class="mt-2">
             <b-card><b-button>{{f.subreading}}</b-button></b-card>
           </b-collapse>
@@ -103,22 +103,22 @@
     citizens.value = obj;
   })
 
-  async function getCaseOps(event: { target: { value: string; }; }) {
-    let caseops = await caseOpeningService.getCaseOpeningByCitizen(event.target.value);
+  async function getCaseOps(citizenid: string) {
+    let caseops = await caseOpeningService.getCaseOpeningByCitizen(citizenid);
     caseOps.value = caseops;
   }
 
-  async function getGenerals(event: { target: { value: string; }; }) {
-    let generalInfo = await  generalInfoService.getGeneralByCitizen(event.target.value);
+  async function getGenerals(citizenid: string) {
+    let generalInfo = await  generalInfoService.getGeneralByCitizen(citizenid);
     generals.value = generalInfo;
   }
 
-  async function saveGeneral(selectedCitizen: string, general: GeneralInfo){
+  async function updateGeneral(selectedCitizen: string, general: GeneralInfo){
     generalInfoService.saveGeneral(selectedCitizen, general);
   }
 
-  async function getFunctionals(event: { target: { value: string; }; }){
-    let functionalState = await functionalStateService.getFunctionalStateByCitizen(event.target.value);
+  async function getFunctionals(citizenid: string){
+    let functionalState = await functionalStateService.getFunctionalStateByCitizen(citizenid);
     functionals.value = functionalState;
   }
 
