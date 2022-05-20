@@ -5,13 +5,13 @@ import type {CaseOpening} from "@/models/CaseOpening";
 export class CaseOpeningService {
 
     async createCaseOpening(citizenId: string,
-                            text: string,
-                            reference: string):
+                            reference: string,
+                            text: string):
         Promise<CaseOpening> {
         const res = await http.post<CaseOpening>("/api/CaseOpening", {
-            CitizenId: citizenId,
-            Reference: reference,
-            Summary: text
+            citizenId: citizenId,
+            reference: reference,
+            summary: text
         });
         return res.data;
     }

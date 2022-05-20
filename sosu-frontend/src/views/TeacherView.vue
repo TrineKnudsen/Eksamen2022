@@ -67,10 +67,29 @@
 
   <button type="button" class="btn btn-outline-success">Opdater sagsoplysninger</button>
      |
-    <button @click="$router.push('/laerer/nysag/' + selectedC)" type="button" class="btn btn-outline-success">Ny sagsåbning</button>
+
     <button type="button" class="btn btn-outline-success">Rediger sag</button>
     <button type="button" class="btn btn-outline-danger">Slet sag</button>
   </div>
+
+  <p>
+    <button style="width: 20%; margin-left: 2%; margin-top: 1%" class="btn btn-default; border-dark" type="button"
+            data-bs-toggle="collapse" data-bs-target="#newcase">Ny sag</button>
+  </p>
+  <div>
+    <div style="width: 50%" class="collapse" id="newcase">
+      <div class="card card-body">
+        <div>
+          <a>Hvem henvender sig?</a>
+          <input v-model="reference" type="text" id="inputreference" class="form-control" rows="2"/>
+          <a>Beskriv hændelsen</a>
+          <input v-model="text" type="text" id="inputtext" class="form-control" rows="2"/>
+          <b-button @click="saveCase">Gem</b-button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 
   Valgt borger: <strong>{{ selectedC }}</strong>
@@ -93,11 +112,14 @@
   const generalInfoService = new GeneralInfoService();
   const functionalStateService = new FunctionalStateService();
 
-  let selectedC: "";
+  let selectedC= ref("");
+  let text = ref("");
+  let reference = ref("");
   let citizens: Ref<Citizen[]> = ref([]);
   let caseOps: Ref<CaseOpening[]> = ref([]);
   let generals: Ref<GeneralInfo[]> = ref([]);
   let functionals: Ref<FunctionalState[]> = ref([]);
+
 
   citizenService.getCitizen().then(obj => {
     citizens.value = obj;
@@ -124,6 +146,10 @@
 
   async function openSub(){
     document.getElementById("subDialog");
+  }
+
+  function saveCase(){
+    caseOpeningService.createCaseOpening(selectedC.value, reference.value, text.value);
   }
 
 </script>
