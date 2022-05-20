@@ -1,0 +1,1 @@
+BorgerId, ,Emne,Mestring,Tekst, ,

@@ -1,0 +1,12 @@
+{
+    "BorgerId": "627b908cfaa1aa9393d490a5",
+    "Overemne": "Funktionsevnetilstande",
+    "Emne": "",
+    "Subreading": "",
+    "NuværendeNiveau": "",
+    "ForventetNiveau": ",
+    "Udførelse": "",
+    "BetydningAfUdførelse": true,
+    "ØnskerMål": "",
+    "FaligNotat": ""
+}

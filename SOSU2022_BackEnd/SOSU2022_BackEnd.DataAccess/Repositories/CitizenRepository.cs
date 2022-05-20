@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using SOSU2022_BacEnd.Domain.IRepositories;
@@ -28,88 +30,31 @@ namespace SOSU2022_BackEnd.DataAcces.Repositories
 
         public Citizen Create(Citizen citizen)
         {
-            var gDocs = new List<GeneralInformationDocument>();
+            var strArray = Array.Empty<string>();
             var documentToInsert = _citizenConverter.Convert(citizen);
-            _citizens.InsertOne(documentToInsert);
+            
             var citizenToReturn = _citizenConverter.Convert(documentToInsert);
-            var generalDocToInsert1 = new GeneralInformationDocument
+            
+            using var sr = new StreamReader(Directory.GetCurrentDirectory()+ "/Files/test.txt");
+            while (sr.Peek() >=0)
             {
-                BorgerId = citizenToReturn.Id,
-                Emne = "Mestring",
-                Tekst = ""
-            };
-            var generalDocToInsert2 = new GeneralInformationDocument
+                var str = sr.ReadToEnd();
+                strArray = str.Split(",");
+            }
+            _citizens.InsertOne(documentToInsert);
+            var allDocs =_citizens.Find(citizenLastCreated => true)
+                .SortByDescending(sort => sort._id).ToList();
+            var lastCreated = allDocs[0];
+            
+            var generalDocToInsert = new GeneralInformationDocument
             {
-                BorgerId = citizenToReturn.Id,
-                Emne = "Motivation",
-                Tekst = ""
+                Emne = strArray[3],
+                Tekst = strArray[5],
+                BorgerId = lastCreated._id.ToString()
             };
-            var generalDocToInsert11 = new GeneralInformationDocument
-            {
-                BorgerId = citizenToReturn.Id,
-                Emne = "Ressourcer",
-                Tekst = ""
-            };
-            var generalDocToInsert3 = new GeneralInformationDocument
-            {
-                BorgerId = citizenToReturn.Id,
-                Emne = "Roller",
-                Tekst = ""
-            };
-            var generalDocToInsert4 = new GeneralInformationDocument
-            {
-                BorgerId = citizenToReturn.Id,
-                Emne = "Vaner",
-                Tekst = ""
-            };
-            var generalDocToInsert5 = new GeneralInformationDocument
-            {
-                BorgerId = citizenToReturn.Id,
-                Emne = "Udannelse_job",
-                Tekst = ""
-            };
-            var generalDocToInsert6 = new GeneralInformationDocument
-            {
-                BorgerId = citizenToReturn.Id,
-                Emne = "Livshistorie",
-                Tekst = ""
-            };
-            var generalDocToInsert7 = new GeneralInformationDocument
-            {
-                BorgerId = citizenToReturn.Id,
-                Emne = "Helbreds_oplysninger",
-                Tekst = ""
-            };
-            var generalDocToInsert8 = new GeneralInformationDocument
-            {
-                BorgerId = citizenToReturn.Id,
-                Emne = "Hjaelpemidler",
-                Tekst = ""
-            };
-            var generalDocToInsert9 = new GeneralInformationDocument
-            {
-                BorgerId = citizenToReturn.Id,
-                Emne = "Boligens_indretning",
-                Tekst = ""
-            };
-            var generalDocToInsert10 = new GeneralInformationDocument
-            {
-                BorgerId = citizenToReturn.Id,
-                Emne = "Netværk",
-                Tekst = ""
-            };
-            gDocs.Add(generalDocToInsert1);
-            gDocs.Add(generalDocToInsert2);
-            gDocs.Add(generalDocToInsert3);
-            gDocs.Add(generalDocToInsert4);
-            gDocs.Add(generalDocToInsert5);
-            gDocs.Add(generalDocToInsert6);
-            gDocs.Add(generalDocToInsert7);
-            gDocs.Add(generalDocToInsert8);
-            gDocs.Add(generalDocToInsert9);
-            gDocs.Add(generalDocToInsert10);
-            gDocs.Add(generalDocToInsert11);
-            _generals.InsertMany(gDocs);
+            
+            _generals.InsertOne(generalDocToInsert);
+
             return citizenToReturn;
         }
         
