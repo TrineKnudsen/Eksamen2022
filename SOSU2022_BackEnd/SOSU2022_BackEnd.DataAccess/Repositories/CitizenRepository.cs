@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -21,7 +22,9 @@ namespace SOSU2022_BackEnd.DataAcces.Repositories
         public CitizenRepository(ICitizenDatabaseSettings settings)
         {
             _citizenConverter = new CitizenConverter();
-            var client = new MongoClient("mongodb+srv://Eksamen2022:UUTu4zvESzEUcL9k@cluster0.oowmj.mongodb.net/SOSU2022?retryWrites=true&w=majority");
+            var client =
+                new MongoClient(
+                    "mongodb+srv://Eksamen2022:UUTu4zvESzEUcL9k@cluster0.oowmj.mongodb.net/SOSU2022?retryWrites=true&w=majority");
             var db = client.GetDatabase("SOSU2022");
 
             _citizens = db.GetCollection<CitizenDocument>("Borger");
@@ -32,32 +35,35 @@ namespace SOSU2022_BackEnd.DataAcces.Repositories
         {
             var strArray = Array.Empty<string>();
             var documentToInsert = _citizenConverter.Convert(citizen);
-            
+
             var citizenToReturn = _citizenConverter.Convert(documentToInsert);
-            
-            using var sr = new StreamReader(Directory.GetCurrentDirectory()+ "/Files/test.txt");
-            while (sr.Peek() >=0)
+            _citizens.InsertOne(documentToInsert);
+
+            using var sr = new StreamReader(Directory.GetCurrentDirectory() + "/Files/GenerelleOplysninger.txt");
+            while (sr.Peek() >= 0)
             {
                 var str = sr.ReadToEnd();
                 strArray = str.Split(",");
             }
-            _citizens.InsertOne(documentToInsert);
-            var allDocs =_citizens.Find(citizenLastCreated => true)
+            var allDocs = _citizens.Find(citizenLastCreated => true)
                 .SortByDescending(sort => sort._id).ToList();
             var lastCreated = allDocs[0];
-            
-            var generalDocToInsert = new GeneralInformationDocument
-            {
-                Emne = strArray[3],
-                Tekst = strArray[5],
-                BorgerId = lastCreated._id.ToString()
-            };
-            
-            _generals.InsertOne(generalDocToInsert);
 
+            var generals = new List<GeneralInformationDocument>();
+            for (var i = 0; i < 11; i++)
+            {
+                var generalDocToInsert = new GeneralInformationDocument
+                {
+                    Emne = strArray[i],
+                    BorgerId = lastCreated._id.ToString()
+                };
+                generals.Add(generalDocToInsert);
+            }
+            _generals.InsertMany(generals);
+            
             return citizenToReturn;
         }
-        
+
         public List<Citizen> GetCitizens()
         {
             var documents = _citizens.Find(citizen => true).ToList();
@@ -70,19 +76,19 @@ namespace SOSU2022_BackEnd.DataAcces.Repositories
             var update = Builders<CitizenDocument>.Update
                 .Set("Navn", updatedCitizen.Name)
                 .Set("Alder", updatedCitizen.Age);
-            
+
             _citizens.FindOneAndUpdate(filter, update);
-            
+
             return updatedCitizen;
         }
 
         public void Delete(string citizenToDelete)
         {
             var deletefilterdocs = Builders<GeneralInformationDocument>
-                .Filter.Eq("BorgerId", value:citizenToDelete);
-            
+                .Filter.Eq("BorgerId", value: citizenToDelete);
+
             var deleteFilter = Builders<CitizenDocument>.Filter.Eq("_id", new ObjectId(citizenToDelete));
-            
+
             _generals.DeleteManyAsync(deletefilterdocs);
             _citizens.DeleteOne(deleteFilter);
         }
