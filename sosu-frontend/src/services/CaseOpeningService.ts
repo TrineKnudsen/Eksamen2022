@@ -21,7 +21,8 @@ export class CaseOpeningService {
         return res.data;
     }
 
-    async deleteCaseOpening(coToDelete: string) {
-        await http.delete<CaseOpening>("api/CaseOpening/"+coToDelete);
+    async deleteCaseOpening(coToDelete: string): Promise<CaseOpening> {
+        const res = await http.delete<CaseOpening>("api/CaseOpening/"+coToDelete);
+        return res.data;
     }
 }

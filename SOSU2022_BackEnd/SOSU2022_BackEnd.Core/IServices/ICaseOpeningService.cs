@@ -10,6 +10,6 @@ namespace SOSU2022_BackEnd.Core.IServices
         List<CaseOpening> GetAll();
         List<CaseOpening> GetByCitizen(string citizenId);
         CaseOpening Update(string idToUpdate, CaseOpening updatedCaseOpening);
-        void Delete(string idToDelete);
+        CaseOpening Delete(string idToDelete);
     }
 }

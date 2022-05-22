@@ -87,12 +87,10 @@
 
   <div>
     <div style="width: 50%" class="collapse" id="collapse-cases">
-      <div v-for="c in caseOps" class="card card-body">
-        <div>
+      <div v-for="(c,index) in caseOps" :key="c.id" class="card card-body">
           <a>Fritekst</a>
           <textarea class="form-control" rows="2" v-text="c.summary"></textarea>
-          <b-button @click="removeCase(c.id)">Fjern sag</b-button>
-        </div>
+          <b-button @click="removeCase(c.id,index)">Fjern sag</b-button>
       </div>
     </div>
   </div>
@@ -249,12 +247,15 @@ async function saveCase() {
   ).then((obj) => caseOps.value.push(obj));
 }
 
-function removeCase(caseToDelete: string) {
-  caseOpeningService.deleteCaseOpening(caseToDelete);
+async function removeCase(caseToDelete: string, index: number) {
+  await caseOpeningService.deleteCaseOpening(caseToDelete)
+  .then(() => {
+    caseOps.value.splice(index,1);
+  });
 }
 
-function deleteCitizen(citizenToDelete: string) {
-  citizenService.deleteCitizen(citizenToDelete);
+ function deleteCitizen(citizenToDelete: string) {
+ citizenService.deleteCitizen(citizenToDelete);
 }
 </script>
 

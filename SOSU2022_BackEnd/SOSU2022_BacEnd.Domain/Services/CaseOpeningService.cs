@@ -35,9 +35,9 @@ namespace SOSU2022_BacEnd.Domain.Services
             return _repo.Update(idToUpdate, updatedCaseOpening);
         }
 
-        public void Delete(string idToDelete)
+        public CaseOpening Delete(string idToDelete)
         {
-            _repo.Delete(idToDelete);
+            return _repo.Delete(idToDelete);
         }
     }
 }

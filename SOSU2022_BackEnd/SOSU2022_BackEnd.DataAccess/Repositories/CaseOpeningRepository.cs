@@ -64,10 +64,21 @@ namespace SOSU2022_BackEnd.DataAcces.Repositories
             return updatedCaseOpening;
         }
 
-        public void Delete(string caseOpeningToDelete)
+        public CaseOpening Delete(string caseOpeningToDelete)
         {
+            var document = _caseOpenings
+                .Find(c => c._id.ToString() == caseOpeningToDelete)
+                .FirstOrDefault();
             var deleteFilter = Builders<CaseOpeningDocument>.Filter.Eq("_id", new ObjectId(caseOpeningToDelete));
-            _caseOpenings.DeleteMany(deleteFilter);
+            _caseOpenings.DeleteOne(deleteFilter);
+
+            return new CaseOpening
+            {
+                Id = document._id.ToString(),
+                CitizenId = document.BorgerId,
+                Reference = document.Henvisning,
+                Summary = document.Fritekst,
+            };
         }
     }
 }

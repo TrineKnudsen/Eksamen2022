@@ -10,6 +10,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using SOSU2022_BacEnd.Domain.IRepositories;
 using SOSU2022_BackEnd.Core.IServices;
+using SOSU2022_BackEnd.DataAcces.Documents;
 using SOSU2022_BackEnd.DTOs;
 
 namespace SOSU2022_BackEnd.Controllers
@@ -122,15 +123,22 @@ namespace SOSU2022_BackEnd.Controllers
         }
 
         [HttpDelete("{coToDelete}")]
-        public void DeleteCaseOpening(string coToDelete)
+        public ActionResult<CaseOpeningDto> DeleteCaseOpening(string coToDelete)
         {
             try
             {
-                _caseOpeningService.Delete(coToDelete);
+                var deletedCase = _caseOpeningService.Delete(coToDelete);
+                return Ok(new CaseOpeningDto
+                {
+                    Id = deletedCase.Id,
+                    CitizenId = deletedCase.CitizenId,
+                    Reference = deletedCase.Reference,
+                    Summary = deletedCase.Summary,
+                });
             }
             catch (Exception e)
             {
-                StatusCode(500, e.Message);
+                return StatusCode(500, e.Message);
             }
         }
     }
