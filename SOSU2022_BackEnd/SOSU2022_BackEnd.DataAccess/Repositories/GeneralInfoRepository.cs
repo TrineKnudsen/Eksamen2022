@@ -30,21 +30,21 @@ namespace SOSU2022_BackEnd.DataAcces.Repositories
             return documents.Select(generals => _converter.Convert(generals)).ToList();
         }
 
-        public GeneralInfo UpdateGeneralInformation(GeneralInfo generalInfoToUpdate, GeneralInfo updatedGeneralInfo)
+        public GeneralInfo UpdateGeneralInformation(string generalInfoToUpdate, GeneralInfo updatedText)
         {
-            var docToUpdate = new GeneralInformationDocument
+            var filter = Builders<GeneralInformationDocument>.Filter.Eq("_id", new ObjectId(generalInfoToUpdate));
+            var update = Builders<GeneralInformationDocument>
+                    .Update
+                    .Set("Tekst", updatedText.Text);
+
+            var updatedDocument = _generals.FindOneAndUpdate(filter, update);
+            return new GeneralInfo
             {
-                BorgerId = generalInfoToUpdate.CitizenId,
-                Emne = generalInfoToUpdate.Subject,
-                Tekst = generalInfoToUpdate.Text,
+                Id = updatedDocument._id.ToString(),
+                CitizenId = updatedDocument.BorgerId,
+                Subject = updatedDocument.Emne,
+                Text = updatedDocument.Tekst,
             };
-            var filter = Builders<GeneralInformationDocument>.Filter.Eq("BorgerId", generalInfoToUpdate.CitizenId);
-            var update = Builders<GeneralInformationDocument>.Update
-                .Set(docToUpdate.Emne, updatedGeneralInfo.Subject);
-
-            _generals.FindOneAndUpdate(filter, update);
-
-            return updatedGeneralInfo;
         }
     }
 }

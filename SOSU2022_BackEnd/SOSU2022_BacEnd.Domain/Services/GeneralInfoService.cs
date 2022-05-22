@@ -19,5 +19,10 @@ namespace SOSU2022_BacEnd.Domain.Services
         {
             return _repo.GetByCitizen(citizenId);
         }
+
+        public GeneralInfo UpdateGeneralInfo(string generalToUpdate, GeneralInfo updatedGeneral)
+        {
+            return _repo.UpdateGeneralInformation(generalToUpdate, updatedGeneral);
+        }
     }
 }

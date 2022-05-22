@@ -8,7 +8,12 @@ export class GeneralInfoService {
         return res.data;
     }
 
-    saveGeneral(selectedCitizen: string, general: GeneralInfo) {
-        
+    async saveGeneral(generalToUpdate: string, updatedText: string): Promise<GeneralInfo> {
+        const res = await http.put<GeneralInfo>("/api/GeneralInfo/"+generalToUpdate, {
+            text: updatedText
+        });
+        console.log(updatedText);
+        console.log(generalToUpdate);
+        return res.data;
     }
 }

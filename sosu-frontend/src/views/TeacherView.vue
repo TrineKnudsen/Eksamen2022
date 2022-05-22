@@ -97,18 +97,18 @@
 
   <div>
     <div style="width: 50%" class="collapse" id="collapse-generals">
-      <div v-for="g in generals" class="card card-body">
+      <div v-for="(g,index) in generals" :key="g.id" class="card card-body">
         <div>
           <a>{{ g.subject }}</a>
           <b-button pill variant="outline-info" data-toggle="tooltip"
             >?</b-button
           >
-          <textarea class="form-control" rows="2" v-text="g.text"></textarea>
+          <textarea type="text" v-text="g.text" id="updatetext" class="form-control" rows="2"></textarea>
           <button
             style="margin-left: 70%; margin-top: 1%"
             type="button"
             class="btn btn-success"
-            @click="updateGeneral({ selectedC, g })"
+            @click="updateGeneral(g.id)"
           >
             Gem {{ g.subject }}
           </button>
@@ -188,21 +188,23 @@
 </template>
 
 <script setup lang="ts">
-import { CitizenService } from "@/services/CitizenService";
-import type { Ref } from "vue";
-import type { Citizen } from "@/models/Citizen";
-import { ref } from "vue";
-import type { CaseOpening } from "@/models/CaseOpening";
-import { CaseOpeningService } from "@/services/CaseOpeningService";
-import { GeneralInfoService } from "@/services/GeneralInfoService";
-import type { GeneralInfo } from "@/models/GeneralInfo";
-import type { FunctionalState } from "@/models/FunctionalState";
-import { FunctionalStateService } from "@/services/FunctionalStateService";
+import {CitizenService} from "@/services/CitizenService";
+import type {Ref} from "vue";
+import {ref} from "vue";
+import type {Citizen} from "@/models/Citizen";
+import type {CaseOpening} from "@/models/CaseOpening";
+import {CaseOpeningService} from "@/services/CaseOpeningService";
+import {GeneralInfoService} from "@/services/GeneralInfoService";
+import type {GeneralInfo} from "@/models/GeneralInfo";
+import type {FunctionalState} from "@/models/FunctionalState";
+import {FunctionalStateService} from "@/services/FunctionalStateService";
+
 const citizenService = new CitizenService();
 const caseOpeningService = new CaseOpeningService();
 const generalInfoService = new GeneralInfoService();
 const functionalStateService = new FunctionalStateService();
 
+let updateText =ref("");
 let selectedC = ref("");
 let text = ref("");
 let reference = ref("");
@@ -216,17 +218,16 @@ citizenService.getCitizen().then((obj) => {
 });
 
 async function getCaseOps(citizenid: string) {
-  let caseops = await caseOpeningService.getCaseOpeningByCitizen(citizenid);
-  caseOps.value = caseops;
+  caseOps.value = await caseOpeningService.getCaseOpeningByCitizen(citizenid);
 }
 
 async function getGenerals(citizenid: string) {
-  let generalInfo = await generalInfoService.getGeneralByCitizen(citizenid);
-  generals.value = generalInfo;
+  generals.value = await generalInfoService.getGeneralByCitizen(citizenid);
 }
 
-async function updateGeneral(selectedCitizen: string, general: GeneralInfo) {
-  generalInfoService.saveGeneral(selectedCitizen, general);
+async function updateGeneral(generalToUpdate: string) {
+  await generalInfoService.saveGeneral(generalToUpdate, document.getElementById("updatetext").value);
+  console.log(document.getElementById("updatetext").value)
 }
 
 async function getFunctionals(citizenid: string) {
