@@ -241,12 +241,12 @@ async function openSub() {
   document.getElementById("subDialog");
 }
 
-function saveCase() {
-  caseOpeningService.createCaseOpening(
+async function saveCase() {
+  await caseOpeningService.createCaseOpening(
     selectedC.value,
     reference.value,
     text.value
-  );
+  ).then((obj) => caseOps.value.push(obj));
 }
 
 function removeCase(caseToDelete: string) {
