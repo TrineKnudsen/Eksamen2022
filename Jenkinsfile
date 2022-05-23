@@ -36,15 +36,6 @@ pipeline {
                 
             }
                 }
-
-       
-        stage("Build frontend"){
-        steps{
-            sh"echo 'npm is not working'"
-            //dir("sosu-frontend"){
-            //sh "npm run build"}
-        }
-        }
             }
         
             
@@ -66,24 +57,16 @@ pipeline {
                             }
         }
     }
+    stage("Clean containers"){
+        steps{
+            script {
+                sh "docker-compose down"
+            }
+        }
+    }
     stage("Deploy"){
-        parallel {
-            stage("Frontend"){
-                steps{
-                    dir("sosu-frontend"){
-                        sh "docker build -t sosu-web2022 ."
-                        sh "docker run --name sosu-web-container-front -d -p 8050:80 sosu-web2022"
-                    }
-                }
-            }
-            stage("API"){
-                steps{
-                    dir("SOSU2022_BackEnd/SOSU2022_BackEnd.WebApi"){
-                        sh "docker build -t sosu-api2022 ."
-                        sh "docker run --name sosu-api-container-back -d -p 8051:80 sosu-api"
-                    }
-                }
-            }
+        steps{
+            sh "docker-compose -d"
         }
     }
 }}

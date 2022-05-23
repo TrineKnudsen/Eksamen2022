@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  web-app:
+    build:
+      context: "sosu-frontend"
+    container_name: "sosu-web-container-front"
+    ports:
+      - "8050:80"
+  api: 
+    build:
+      context: "SOSU2022_BackEnd/SOSU2022_BackEnd.WebApi"
+    container_name: "sosu-api-container-back"
+    ports:
+      - "8051:80"
