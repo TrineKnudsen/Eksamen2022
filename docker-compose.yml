@@ -7,7 +7,7 @@ services:
     container_name: "sosu-web-container-front"
     ports:
       - "8050:80"
-  api: 
+  api:
     build:
       context: "SOSU2022_BackEnd/SOSU2022_BackEnd.WebApi"
     container_name: "sosu-api-container-back"
