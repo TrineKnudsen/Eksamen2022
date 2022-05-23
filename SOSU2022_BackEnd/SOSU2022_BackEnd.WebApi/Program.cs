@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -15,6 +16,12 @@ namespace SOSU2022_BackEnd
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+            var processStages = new List<string> {"Starting", "Running", "Testing", "Deploying"};
+            foreach (var p in processStages)
+            {
+                Thread.Sleep(TimeSpan.FromSeconds(2));
+                SendProgress(p);
+            }
         }
 
         public static async void SendProgress(string progress)
