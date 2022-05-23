@@ -61,7 +61,7 @@ pipeline {
         steps{
             script {
                 sh "docker rm -f sosu-web-container-front"
-                sh "docker rm -f --name sosu-api-container-back"
+                sh "docker rm -f sosu-api-container-back"
             }
         }
     }
