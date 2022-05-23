@@ -67,13 +67,23 @@ pipeline {
         }
     }
     stage("Deploy"){
+        parallel {
+            stage("Frontend"){
                 steps{
                     dir("sosu-frontend"){
-                       sh "npm install"
-                               sh "npm run build"
-                        sh "docker build -t sosu-web ."
-                        sh "docker run --name sosu-web-container-1 -d -p 8070:80 sosu-web"
+                        sh "docker build -t sosu-web2022 ."
+                        sh "docker run sosu-web2022-container -d -p 8060:80 sosu-web2022"
                     }
                 }
+            }
+            stage("API"){
+                steps{
+                    dir("SOSU2022_BackEnd"){
+                        sh "docker build -t sosu-api ."
+                        sh "docker run --name sosu-api-container -d -p 8061:80 sosu-api"
+                    }
+                }
+            }
+        }
     }
 }}
