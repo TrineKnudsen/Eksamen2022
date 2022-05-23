@@ -123,22 +123,15 @@ namespace SOSU2022_BackEnd.Controllers
         }
 
         [HttpDelete("{coToDelete}")]
-        public ActionResult<CaseOpeningDto> DeleteCaseOpening(string coToDelete)
+        public void DeleteCaseOpening(string coToDelete)
         {
             try
             {
-                var deletedCase = _caseOpeningService.Delete(coToDelete);
-                return Ok(new CaseOpeningDto
-                {
-                    Id = deletedCase.Id,
-                    CitizenId = deletedCase.CitizenId,
-                    Reference = deletedCase.Reference,
-                    Summary = deletedCase.Summary,
-                });
+                _caseOpeningService.Delete(coToDelete);
             }
             catch (Exception e)
             {
-                return StatusCode(500, e.Message);
+                StatusCode(500, e.Message);
             }
         }
     }
