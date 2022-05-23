@@ -3,8 +3,8 @@ import type {User} from "@/models/User";
 
 export class UserService{
     async login(email:string,password:string): Promise<User> {
-        const res = await http.post<User>("/users/login", {
-            email: email,
+        const res = await http.post<User>("/users/Login", {
+            username: email,
             password: password
         });
         return res.data;

@@ -24,12 +24,13 @@ namespace SOSU2022_BackEnd.Controllers
             try
             {
                 var user = _userService.GetUser(dto.Username, dto.Password);
-                return Ok(new UserDto
+                var loginusertoreturn = new UserDto
                 {
                     Id = user.Id,
                     Username = user.Username,
                     Password = user.Password
-                });
+                };
+                return Created("https//:localhost/api/Login", loginusertoreturn);
             }
             catch (Exception e)
             {

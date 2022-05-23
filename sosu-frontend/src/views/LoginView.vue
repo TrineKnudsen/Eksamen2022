@@ -9,7 +9,11 @@
       <button @click="login" class="btn btn-indigo" type="submit">Login</button>
     </div>
   </form>
+
+
+  {{userStore.username}} er logget ind
 </template>
+
 
 <script setup lang="ts">
 import {ref} from "vue";
@@ -17,11 +21,12 @@ import {UserStore} from "@/stores/userStore";
 
 const userStore = new UserStore();
 
-let username = ref("");
+let email = ref("");
 let password = ref("");
+let loggedinuser = ref("");
 
 function login(){
-  userStore.login(username,password);
+  userStore.loginUser(username,password);
 }
 
 

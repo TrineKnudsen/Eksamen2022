@@ -100,10 +100,12 @@
 
   <div>
     <div style="width: 50%;margin-left: 7%" class="collapse" id="collapse-cases">
-      <div v-for="(c,index) in caseOps" :key="c.id" class="card card-body">
+      <div v-for="(c) in caseOps" :key="c.id" class="card card-body">
+        <div>
         <a>Fritekst</a>
         <textarea class="form-control" rows="2" v-text="c.summary"></textarea>
-        <b-button @click="removeCase(c.id,index)">Fjern sag</b-button>
+        <b-button @click="removeCase(c.id)">Fjern sag</b-button>
+          </div>
       </div>
     </div>
   </div>
@@ -172,16 +174,17 @@ let caseOps: Ref<CaseOpening[]> = ref([]);
 let generals: Ref<GeneralInfo[]> = ref([]);
 let functionals: Ref<FunctionalState[]> = ref([]);
 
-caseOpeningService.getCaseOpeningByCitizen(citizenStore.id).then((obj) => {
+caseOpeningService.getCaseOpeningByCitizen(citizenStore.selectedCitizen.id).then((obj) => {
   caseOps.value = obj;
 })
 
 generalInfoService.getGeneralByCitizen(citizenStore.id).then((obj) => {
-  generals.value = obj;
+  generals.value =obj;
 })
 
 functionalStateService.getFunctionalStateByCitizen(citizenStore.id).then((obj)=> {
-  functionals.value = obj;
+  console.log(citizenStore.id)
+  functionals.value.push(obj);
 })
 
 async function removeCase(caseToDelete: string, index: number) {
@@ -193,14 +196,14 @@ async function removeCase(caseToDelete: string, index: number) {
 
 async function saveCase() {
   await caseOpeningService.createCaseOpening(
-      citizenStore.id.value,
+      citizenStore.selectedCitizen.id,
       reference.value,
       text.value
   ).then((obj) => caseOps.value.push(obj));
 }
 
-async function updateGeneral(this: any, generalToUpdate: string) {
-  await generalInfoService.saveGeneral(generalToUpdate, this.document.getElementById("updatetext").value);
+async function updateGeneral(generalToUpdate: string) {
+  await generalInfoService.saveGeneral(generalToUpdate, document.getElementById("updatetext").value);
 }
 
 

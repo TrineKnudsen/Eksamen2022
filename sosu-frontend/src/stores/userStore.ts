@@ -7,20 +7,19 @@ const userService: UserService = new UserService();
 export const UserStore = defineStore({
     id: "userStore",
     state: () => ({
-        loggedInUser: {name: "", uuid: ""} as User,
-        foundUser: {name: "", uuid: ""} as User,
+        loggedInUser: {email: "", id: ""} as User,
     }),
     getters: {
         username: (state) => {
-            if (state.loggedInUser.name != undefined) return state.loggedInUser.name;
+            if (state.loggedInUser.email != undefined) return state.loggedInUser.email;
             else return "";
         },
-        uuid: (state) => {
-            if (state.loggedInUser.name != undefined) return state.loggedInUser.uuid;
+        id: (state) => {
+            if (state.loggedInUser.id != undefined) return state.loggedInUser.id;
         },
     },
     actions: {
-        login(email:string,password:string) {
+        loginUser(email:string,password:string) {
             userService
                 .login(email,password)
                 .then((user) => (this.loggedInUser =user))
