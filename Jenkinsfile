@@ -40,7 +40,9 @@ pipeline {
        
         stage("Build frontend"){
         steps{
-            sh ""
+            sh"echo 'We are building the frontend'"
+            dir("sosu-frontend"){
+            sh "npm run build"}
         }
         }
             }
