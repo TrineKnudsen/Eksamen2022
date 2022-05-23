@@ -40,23 +40,9 @@ pipeline {
        
         stage("Build frontend"){
         steps{
-            sh"echo 'We are building the frontend'"
-            dir("sosu-frontend"){
-            sh "npm run build"
+            sh ""
         }
         }
-        post {
-                        always{
-                            sh "echo 'Building frontend finished'"
-                        }
-                        success{
-                        sh "echo 'Building frontend succeeded'"
-                        }
-                        failure {
-                        sh "echo 'Building frontend failed'"
-                        }
-                        
-                    }
             }
         
             
