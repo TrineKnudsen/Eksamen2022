@@ -49,7 +49,7 @@ pipeline {
     }
     stage ("Test"){
         steps {
-            dir("SOSU2022_BackEnd"){
+            dir("SOSU2022_BackEnd/SOSU2022_BackEnd/Core.Test"){
                 sh "dotnet add package coverlet.collector"
                 sh "dotnet test --collect: 'XPlat Code Coverage'"
             }
@@ -58,6 +58,7 @@ pipeline {
         post {
             success{
                 archiveArtifacts "SOSU2022_BackEnd/Core.Test/TestResults/*/coverage.cobertura.xml"
+                publishCoverage adapters: [coberturaAdapter('SOSU2022_BackEnd/Core.Test/TestResults/*/coverage.cobertura.xml')], sourceFileResolver: sourceFiles('NEVER_STORE')
             }
         }
     }
