@@ -63,7 +63,6 @@ pipeline {
                 sh "docker rm -f sosu-web-container-front"
                 sh "docker rm -f --name sosu-api-container-back"
             }
-            finally { }
         }
     }
     stage("Deploy"){
