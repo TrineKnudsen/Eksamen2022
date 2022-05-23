@@ -78,7 +78,7 @@ pipeline {
             }
             stage("API"){
                 steps{
-                    dir("SOSU2022_BackEnd"){
+                    dir("SOSU2022_BackEnd/SOSU2022_BackEnd.WebApi"){
                         sh "docker build -t sosu-api ."
                         sh "docker run --name sosu-api-container -d -p 8061:80 sosu-api"
                     }
