@@ -29,8 +29,8 @@ const citizenService = new CitizenService();
 let name =ref("");
 let age = ref("");
 
-function saveCitizen(){
-  citizenService.createCitizen(name.value, age.value)
+async function saveCitizen(){
+  await citizenService.createCitizen(name.value, age.value);
 }
 
 </script>

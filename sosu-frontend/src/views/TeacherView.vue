@@ -1,20 +1,8 @@
 <template>
-  <div>
-    <button
-      style="margin-left: 1%; margin-bottom: 1%"
-      @click="$router.push('/laerer/nyborger')"
-      type="button"
-      class="btn btn-outline-success"
-    >
-      Ny borger</button
-    ><span></span>
-    <button
-      style="margin-bottom: 1%; margin-left: 1%"
-      type="button"
-      class="btn btn-outline-danger"
-    >
-      Slet borger
-    </button>
+  <div class="p-5 text-center bg-light">
+    <h1 class="mb-3">SOSU fs3 læringsplatform</h1>
+    <h4 class="mb-3"></h4>
+    <a>Vælg en borger for for at se og redigere i sagsåbninger, sagsoplysning, funktionsevnetilstand og helbredstilstand</a>
   </div>
 
   <div style="background: cornflowerblue; padding: 1rem; border-radius: 0.3rem">
@@ -22,169 +10,31 @@
       id="selectC"
       class="browser-default custom-select custom-select-lg mb-3"
       v-model="selectedC"
-      @change="
-        getCaseOps(selectedC), getGenerals(selectedC), getFunctionals(selectedC)
-      "
-    >
+      @change="setCitizen(selectedC)">
       <option>Vælg en borger</option>
-      <option v-for="c in citizens" :value="c.id">
+      <option v-for="(c,key) in citizens" :value="c" v-bind:key="key" :key="c.id">
         {{ c.name }} | {{ c.age }}
       </option>
     </select>
   </div>
 
-  <p>
-    <button
-      style="width: 20%; margin-left: 2%; margin-top: 1%"
-      class="btn btn-default; border-dark"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#collapse-cases"
-    >
-      Sager
-    </button>
-
-    <button
-      style="width: 20%; margin-left: 2%; margin-top: 1%"
-      class="btn btn-default; border-dark"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#collapse-generals"
-    >
-      Generelle oplysninger
-    </button>
-
-    <button
-      style="
-        width: 20%;
-        margin-left: 2%;
-        background-color: yellow;
-        margin-top: 1%;
-      "
-      class="btn btn default; border-dark"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#collapse-functionals"
-    >
-      Funktionsevnetilstand
-    </button>
-
-    <button
-      style="
-        width: 20%;
-        background-color: cornflowerblue;
-        margin-left: 2%;
-        margin-top: 1%;
-      "
-      class="btn btn-default; border-dark"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#collapse-healthCon"
-    >
-      Helbredstilstand
-    </button>
-  </p>
-
   <div>
-    <div style="width: 50%" class="collapse" id="collapse-cases">
-      <div v-for="(c,index) in caseOps" :key="c.id" class="card card-body">
-          <a>Fritekst</a>
-          <textarea class="form-control" rows="2" v-text="c.summary"></textarea>
-          <b-button @click="removeCase(c.id,index)">Fjern sag</b-button>
-      </div>
-    </div>
-  </div>
-
-  <div>
-    <div style="width: 50%" class="collapse" id="collapse-generals">
-      <div v-for="(g,index) in generals" :key="g.id" class="card card-body">
-        <div>
-          <a>{{ g.subject }}</a>
-          <b-button pill variant="outline-info" data-toggle="tooltip"
-            >?</b-button
-          >
-          <textarea type="text" v-text="g.text" id="updatetext" class="form-control" rows="2"></textarea>
-          <button
-            style="margin-left: 70%; margin-top: 1%"
-            type="button"
-            class="btn btn-success"
-            @click="updateGeneral(g.id)"
-          >
-            Gem {{ g.subject }}
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div style="width: 50%; border-color: yellow">
-    <b-collapse id="collapse-functionals" class="mt-2">
-      <b-card v-for="f in functionals">
-        <p class="card-text">
-          <b-button v-b-toggle.collapse-func-inner size="sm">{{
-            f.subject
-          }}</b-button>
-          <b-collapse id="collapse-func-inner" class="mt-2">
-            <b-card
-              ><b-button>{{ f.subreading }}</b-button></b-card
-            >
-          </b-collapse>
-        </p>
-      </b-card>
-    </b-collapse>
-  </div>
-
-  <div id="buttons">
-    <button type="button" class="btn btn-outline-success">
-      Opdater sagsoplysninger
-    </button>
-    |
-
-    <button type="button" class="btn btn-outline-success">Rediger sag</button>
-    <button type="button" class="btn btn-outline-danger">Slet sag</button>
-  </div>
-
-  <p>
     <button
-      style="width: 20%; margin-left: 2%; margin-top: 1%"
-      class="btn btn-default; border-dark"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#newcase"
-    >
-      Ny sag
+        style="width: 20%; margin-left: 1%; margin-top: 1%;"
+        @click="$router.push('/laerer/nyborger')"
+        type="button"
+        class="btn btn-outline-success">
+      Ny borger
     </button>
-  </p>
-  <div>
-    <div style="width: 50%" class="collapse" id="newcase">
-      <div class="card card-body">
-        <div>
-          <a>Hvem henvender sig?</a>
-          <input
-            v-model="reference"
-            type="text"
-            id="inputreference"
-            class="form-control"
-            rows="2"
-          />
-          <a>Beskriv hændelsen</a>
-          <input
-            v-model="text"
-            type="text"
-            id="inputtext"
-            class="form-control"
-            rows="2"
-          />
-          <b-button @click="saveCase">Gem</b-button>
-        </div>
-      </div>
-    </div>
+    <button style="width: 45%; margin-left: 1%; margin-top: 1%" class="btn btn-outline-success"
+            @click="$router.push('/sagsoplysning')">Gå til sagsåbninger, sagsoplysninger, funktionstilstand og helbredtilstand ⤑
+    </button>
+    <button style="width: 30%; margin-left: 1%; margin-top: 1%" class="btn btn-outline-danger"
+                          @click="deleteCitizen(citizenStore.id,index)">Slet borger
+    </button>
   </div>
-  Valgt borger: <strong>{{ selectedC }}</strong>
 
-  <button class="btn btn-outline-danger" @click="deleteCitizen(selectedC)">
-    Slet borger
-  </button>
+
 </template>
 
 <script setup lang="ts">
@@ -192,98 +42,33 @@ import {CitizenService} from "@/services/CitizenService";
 import type {Ref} from "vue";
 import {ref} from "vue";
 import type {Citizen} from "@/models/Citizen";
-import type {CaseOpening} from "@/models/CaseOpening";
-import {CaseOpeningService} from "@/services/CaseOpeningService";
-import {GeneralInfoService} from "@/services/GeneralInfoService";
-import type {GeneralInfo} from "@/models/GeneralInfo";
-import type {FunctionalState} from "@/models/FunctionalState";
-import {FunctionalStateService} from "@/services/FunctionalStateService";
+import {CitizenStore} from "@/stores/CitizenStore";
 
 const citizenService = new CitizenService();
-const caseOpeningService = new CaseOpeningService();
-const generalInfoService = new GeneralInfoService();
-const functionalStateService = new FunctionalStateService();
+const citizenStore = new CitizenStore();
 
-let updateText =ref("");
-let selectedC = ref("");
-let text = ref("");
-let reference = ref("");
+let selectedC = ref();
 let citizens: Ref<Citizen[]> = ref([]);
-let caseOps: Ref<CaseOpening[]> = ref([]);
-let generals: Ref<GeneralInfo[]> = ref([]);
-let functionals: Ref<FunctionalState[]> = ref([]);
 
 citizenService.getCitizen().then((obj) => {
   citizens.value = obj;
 });
 
-async function getCaseOps(citizenid: string) {
-  caseOps.value = await caseOpeningService.getCaseOpeningByCitizen(citizenid);
+function setCitizen(citizen: Citizen){
+  citizenStore.setCitizen(citizen);
 }
 
-async function getGenerals(citizenid: string) {
-  generals.value = await generalInfoService.getGeneralByCitizen(citizenid);
-}
-
-async function updateGeneral(generalToUpdate: string) {
-  await generalInfoService.saveGeneral(generalToUpdate, document.getElementById("updatetext").value);
-  console.log(document.getElementById("updatetext").value)
-}
-
-async function getFunctionals(citizenid: string) {
-  let functionalState =
-    await functionalStateService.getFunctionalStateByCitizen(citizenid);
-  functionals.value = functionalState;
-}
-
-async function openSub() {
-  document.getElementById("subDialog");
-}
-
-async function saveCase() {
-  await caseOpeningService.createCaseOpening(
-    selectedC.value,
-    reference.value,
-    text.value
-  ).then((obj) => caseOps.value.push(obj));
-}
-
-async function removeCase(caseToDelete: string, index: number) {
-  await caseOpeningService.deleteCaseOpening(caseToDelete)
+async function deleteCitizen(citizenToDelete: string,index: number) {
+  await citizenService.deleteCitizen(citizenToDelete)
   .then(() => {
-    caseOps.value.splice(index,1);
+    citizens.value.splice(index, 1);
   });
 }
 
- function deleteCitizen(citizenToDelete: string) {
- citizenService.deleteCitizen(citizenToDelete);
-}
 </script>
 
 <style scoped>
-#containerlist {
-  width: 50%;
-}
-#caselist {
-  float: left;
-  width: 25%;
-  padding-left: 1%;
-}
 
-#student {
-  margin-top: 5%;
-}
-#buttons {
-  margin-top: 15%;
-}
-
-#toggles2 {
-  margin-left: 30%;
-}
-
-#collapse-generals {
-  width: 60%;
-}
 
 #selectC {
   width: 100%;
