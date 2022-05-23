@@ -51,7 +51,7 @@ pipeline {
         steps {
             dir("SOSU2022_BackEnd/Core.Test"){
                 sh "dotnet add package coverlet.collector"
-                sh "dotnet test --collext: 'XPlat Code Coverage'"
+                sh "dotnet test --collect: 'XPlat Code Coverage'"
             }
         
         }
