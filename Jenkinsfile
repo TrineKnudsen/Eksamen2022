@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    
-    tools {nodejs "nodejs"}
-    
     triggers {
         pollSCM("* * * * *")
     }
@@ -43,9 +40,9 @@ pipeline {
        
         stage("Build frontend"){
         steps{
-            sh"echo 'We are building the frontend'"
-            dir("sosu-frontend"){
-            sh "npm run build"}
+            sh"echo 'npm is not working'"
+            //dir("sosu-frontend"){
+            //sh "npm run build"}
         }
         }
             }
