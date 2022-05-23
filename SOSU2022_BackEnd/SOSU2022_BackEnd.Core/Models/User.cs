@@ -1,7 +1,8 @@
-﻿namespace SOSU2022_BackEnd.DTOs
+﻿namespace SOSU2022_BackEnd.Core.Models
 {
-    public class LoginDto
+    public class User
     {
+        public string Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
     }

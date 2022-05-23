@@ -1,7 +1,8 @@
+using System;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SOSU2022_BackEnd.Core.IServices;
 using SOSU2022_BackEnd.DTOs;
-using SOSU2022_BackEnd.Security;
 
 
 namespace SOSU2022_BackEnd.Controllers
@@ -10,22 +11,30 @@ namespace SOSU2022_BackEnd.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly ISecurityService _securityService;
+        private readonly IUserService _userService;
 
-        public AuthController(ISecurityService securityService)
+        public AuthController(IUserService userService)
         {
-            _securityService = securityService;
+            _userService = userService;
         }
         [AllowAnonymous]
         [HttpPost(nameof(Login))]
-        public ActionResult<TokenDto> Login(LoginDto dto)
+        public ActionResult<UserDto> Login(UserDto dto)
         {
-            var token = _securityService.GenerateJwtToken(dto.Username, dto.Password);
-            return new TokenDto
+            try
             {
-                Jwt = token.Jwt,
-                Message = token.Message
-            };
+                var user = _userService.GetUser(dto.Username, dto.Password);
+                return Ok(new UserDto
+                {
+                    Id = user.Id,
+                    Username = user.Username,
+                    Password = user.Password
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, "Ring til nogen der ved noget");
+            }
         }
     }
 }
