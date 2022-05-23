@@ -46,7 +46,9 @@ namespace SOSU2022_BackEnd
             services.AddScoped<IGeneralInfoService, GeneralInfoService>();
             services.AddScoped<IFunctionalStateRepository, FunctionalStateRepository>();
             services.AddScoped<IFunctionalStateService, FunctionalStateService>();
-
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
+            
             services.AddCors(options => 
                 {options.AddPolicy("Dev-cors", policy =>
                 {
@@ -67,8 +69,9 @@ namespace SOSU2022_BackEnd
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SOSU2022_BackEnd.WebApi v1"));
                 app.UseCors("Dev-cors");
+                app.UseWebSockets();
             }
-
+                
             app.UseHttpsRedirection();
 
             app.UseRouting();

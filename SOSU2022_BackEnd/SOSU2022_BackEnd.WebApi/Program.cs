@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SocketIOClient;
 
 namespace SOSU2022_BackEnd
 {
@@ -14,6 +15,14 @@ namespace SOSU2022_BackEnd
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+        }
+
+        public static async void SendProgress(string progress)
+        {
+            var client = new SocketIO("http://localhost:3000/");
+            await client.ConnectAsync();
+            await client.EmitAsync("fromProcess", progress);
+            await client.DisconnectAsync();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

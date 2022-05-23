@@ -199,8 +199,8 @@ async function saveCase() {
   ).then((obj) => caseOps.value.push(obj));
 }
 
-async function updateGeneral(generalToUpdate: string) {
-  await generalInfoService.saveGeneral(generalToUpdate, document.getElementById("updatetext").value);
+async function updateGeneral(this: any, generalToUpdate: string) {
+  await generalInfoService.saveGeneral(generalToUpdate, this.document.getElementById("updatetext").value);
 }
 
 
