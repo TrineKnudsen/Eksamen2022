@@ -1,15 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using SOSU2022_BacEnd.Domain.IRepositories;
 using SOSU2022_BacEnd.Domain.Services;
@@ -35,6 +29,7 @@ namespace SOSU2022_BackEnd
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "SOSU2022_BackEnd.WebApi", Version = "v1"});
+                
             });
 
             services.AddScoped<ICitizenRepository, CitizenRepository>();
@@ -46,6 +41,8 @@ namespace SOSU2022_BackEnd
             services.AddScoped<IGeneralInfoService, GeneralInfoService>();
             services.AddScoped<IFunctionalStateRepository, FunctionalStateRepository>();
             services.AddScoped<IFunctionalStateService, FunctionalStateService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddCors(options => 
                 {options.AddPolicy("Dev-cors", policy =>
@@ -59,7 +56,8 @@ namespace SOSU2022_BackEnd
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, 
+            IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -68,6 +66,7 @@ namespace SOSU2022_BackEnd
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SOSU2022_BackEnd.WebApi v1"));
                 app.UseCors("Dev-cors");
                 app.UseWebSockets();
+
             }
                 
             app.UseHttpsRedirection();
