@@ -7,7 +7,7 @@ using SOSU2022_BackEnd.DTOs;
 
 namespace SOSU2022_BackEnd.Controllers
 {
-    [Route("api/[controller]")]
+    [Microsoft.AspNetCore.Components.Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -33,7 +33,7 @@ namespace SOSU2022_BackEnd.Controllers
             }
             catch (Exception e)
             {
-                return StatusCode(500, "Ring til nogen der ved noget");
+                return StatusCode(500, e.Message);
             }
         }
     }

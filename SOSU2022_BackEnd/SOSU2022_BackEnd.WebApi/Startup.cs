@@ -1,3 +1,4 @@
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -9,6 +10,7 @@ using SOSU2022_BacEnd.Domain.Services;
 using SOSU2022_BackEnd.Core.IServices;
 using SOSU2022_BackEnd.Core.Models;
 using SOSU2022_BackEnd.DataAcces.Repositories;
+
 namespace SOSU2022_BackEnd
 {
     public class Startup

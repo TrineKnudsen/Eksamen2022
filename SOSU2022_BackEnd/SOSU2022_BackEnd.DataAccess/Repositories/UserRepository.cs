@@ -19,7 +19,7 @@ namespace SOSU2022_BackEnd.DataAcces.Repositories
         }
         public User FindByUsernameAndPassWord(string username, string password)
         {
-            var user = _users.Find(user => user.Username == username && user.Password == password).FirstOrDefault();
+            var user = _users.Find(user => user.Brugernavn == username && user.Adgangskode == password).FirstOrDefault();
 
             if (user == null)
             {
@@ -29,8 +29,8 @@ namespace SOSU2022_BackEnd.DataAcces.Repositories
             return new User
             {
                 Id = user._id.ToString(),
-                Username = user.Username,
-                Password = user.Password
+                Username = user.Brugernavn,
+                Password = user.Adgangskode,
             };
         }
     }
