@@ -57,7 +57,7 @@ pipeline {
         }
         post {
             success{
-                publishCoverage adapters: [coberturaAdapter("SOSU2022_BackEnd/SOSU2022_BackEnd.Domain/TestResults/*/coverage.cobertura.xml")]
+                archiveArtifacts "SOSU2022_BackEnd/Core.Test/TestResults/*/coverage.cobertura.xml"
             }
         }
     }
