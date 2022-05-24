@@ -33,12 +33,6 @@ namespace SOSU2022_BackEnd.Core.Test.IServices
         }
 
         [Fact]
-        public void CitizenService_WithNullCitizenRepo_ThrowsInvalidDataException()
-        {
-            
-        }
-
-        [Fact]
         public void GetCitizens_withoutParams_ReturnsListOfAllCitizens()
         {
             var mock = new Mock<ICitizenService>();
