@@ -46,12 +46,15 @@ pipeline {
                 sh "dotnet add package coverlet.collector"
                 sh "dotnet test --collect:'XPlat Code Coverage'"
             }
-           
-        
+            dir("SOSU2022_BackEnd/Core.Test/SOSU2022_BackEnd.Domain"){
+                            sh "dotnet add package coverlet.collector"
+                            sh "dotnet test --collect:'XPlat Code Coverage'"
+                        }
         }
         post {
             success{
                 publishCoverage adapters: [coberturaAdapter('SOSU2022_BackEnd/Core.Test/SOSU2022_BackEnd.Core.Test/TestResults/*/coverage.cobertura.xml')]
+                publishCoverage adapters: [coberturaAdapter('SOSU2022_BackEnd/Core.Test/SOSU2022_BackEnd.Domain/TestResults/*/coverage.cobertura.xml')]
                 
                                             
                             }
@@ -71,7 +74,7 @@ pipeline {
                 steps{
                     dir("sosu-frontend"){
                         sh "docker build -t sosu-image ."
-                        sh "docker run --name sosu-web-container -d -p 8080:80 sosu-image"
+                        sh "docker run --name sosu-web-container -d -p 8082:80 sosu-image"
                     }
                 }
             }
