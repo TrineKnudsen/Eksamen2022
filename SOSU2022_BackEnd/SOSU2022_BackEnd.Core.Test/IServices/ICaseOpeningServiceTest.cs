@@ -9,11 +9,21 @@ namespace SOSU2022_BackEnd.Core.Test.IServices
 {
     public class ICaseOpeningServiceTest
     {
+        
+        private readonly Mock<ICaseOpeningRepository> _mock;
+        private readonly CaseOpeningService _service;
+        
+            public ICaseOpeningServiceTest()
+        {
+            _mock = new Mock<ICaseOpeningRepository>();
+            _service = new CaseOpeningService(_mock.Object);
+        }
+        
+        
         [Fact]
         public void ICaseOpeningService_IsAvailable()
         {
-            var service = new Mock<CaseOpeningService>().Object;
-            Assert.NotNull(service);
+            Assert.NotNull(_service);
         }
 
         [Fact]
@@ -34,12 +44,6 @@ namespace SOSU2022_BackEnd.Core.Test.IServices
             mock.Setup(s => s.GetByCitizen("citizenId")).Returns(fakeList);
             var service = mock.Object;
             Assert.Equal(fakeList, service.GetByCitizen("citizenId"));
-        }
-
-        [Fact]
-        public void Update_ReturnsCaseOpening()
-        {
-            var mock = new Mock<ICaseOpeningService>();
         }
     }
 }
