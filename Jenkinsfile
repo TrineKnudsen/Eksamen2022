@@ -60,7 +60,7 @@ pipeline {
     stage("Clean containers"){
         steps{
             script {
-                sh "docker rm -f sosu-web-container-front"
+                sh "docker rm -f sosu-web-container"
                 sh "docker rm -f sosu-api-container-back"
             }
         }
@@ -70,8 +70,8 @@ pipeline {
             stage("Frontend"){
                 steps{
                     dir("sosu-frontend"){
-                        sh "docker build -t sosu-web2022 ."
-                        sh "docker run --name sosu-web-container-front -d -p 8050:80 sosu-web2022"
+                        sh "docker build -t sosu-image ."
+                        sh "docker run --name sosu-web-container -d -p 8080:80 sosu-image"
                     }
                 }
             }
@@ -79,7 +79,7 @@ pipeline {
                 steps{
                     dir("SOSU2022_BackEnd/SOSU2022_BackEnd.WebApi"){
                         sh "docker build -t sosu-api2022 ."
-                        sh "docker run --name sosu-api-container-back -d -p 8051:80 sosu-api"
+                        sh "docker run --name sosu-api-container-back -d -p 8081:80 sosu-api"
                     }
                 }
             }

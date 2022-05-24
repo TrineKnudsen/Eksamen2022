@@ -12,7 +12,7 @@ namespace SOSU2022_BacEnd.Domain.Services
 
         public CaseOpeningService(ICaseOpeningRepository repo)
         {
-            _repo = repo ?? throw new InvalidDataException();
+            _repo = repo ?? throw new InvalidDataException("Repo cannot be null");
         }
         
         public CaseOpening Create(CaseOpening caseOpening)
