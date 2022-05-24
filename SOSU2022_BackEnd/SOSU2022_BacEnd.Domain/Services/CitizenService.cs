@@ -12,7 +12,7 @@ namespace SOSU2022_BacEnd.Domain.Services
 
         public CitizenService(ICitizenRepository citizenRepository)
         {
-            _citizenRepository = citizenRepository ?? throw new InvalidDataException();
+            _citizenRepository = citizenRepository ?? throw new InvalidDataException("Repo cannot be null");
         }
         
         public List<Citizen> GetAllCitizens()
@@ -25,11 +25,7 @@ namespace SOSU2022_BacEnd.Domain.Services
         {
             return _citizenRepository.Create(citizen);
         }
-
-        public Citizen GetCitizen(int id)
-        {
-            throw new System.NotImplementedException();
-        }
+        
 
         public Citizen Update(string idToUpdate, Citizen updatedCitizen)
         {

@@ -7,7 +7,6 @@ namespace SOSU2022_BackEnd.Core.IServices
     {
         List<Citizen> GetAllCitizens();
         Citizen CreateCitizen(Citizen citizen);
-        Citizen GetCitizen(int id);
         Citizen Update(string idToUpdate, Citizen citizen);
         void Delete(string idToDelete);
     }
