@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using System.IO;
-using SOSU2022_BackEnd.Core.IServices;
 using Moq;
 using SOSU2022_BacEnd.Domain.IRepositories;
 using SOSU2022_BacEnd.Domain.Services;
+using SOSU2022_BackEnd.Core.IServices;
 using SOSU2022_BackEnd.Core.Models;
 using Xunit;
 
