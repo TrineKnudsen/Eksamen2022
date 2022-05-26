@@ -11,7 +11,10 @@ pipeline {
         stage ("Startup"){
         steps{
         buildDescription env.COMMITMSG
-       
+       dir("SOSU2022_BackEnd/SOSU2022_BackEnd.Domain.Test"){
+       sh "rm -rf TestResults"}
+       dir("SOSU2022_BackEnd/SOSU2022_BackEnd.Core.Tests"){
+       sh "rm -rf TestResults"}
         }
         }
         
