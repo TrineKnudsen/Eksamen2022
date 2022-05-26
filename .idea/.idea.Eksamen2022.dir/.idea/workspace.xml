@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="16ae4723-193e-4a3b-98ec-6bb167e2df99" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.DataAccess/Documents/FunctionalState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Eksamen2022.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Eksamen2022.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BacEnd.Domain/IRepositories/IFunctionalStateRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BacEnd.Domain/IRepositories/IFunctionalStateRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BacEnd.Domain/Services/FunctionalStateService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BacEnd.Domain/Services/FunctionalStateService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.Core/IServices/IFunctionalStateService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.Core/IServices/IFunctionalStateService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.Core/Models/FunctionalState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.Core/Models/FunctionalState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.DataAccess/Repositories/FunctionalStateRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.DataAccess/Repositories/FunctionalStateRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.DataAccess/SOSU2022_BackEnd.DataAccess.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.DataAccess/SOSU2022_BackEnd.DataAccess.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.WebApi/Controllers/FunctionalStateController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.WebApi/Controllers/FunctionalStateController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.sln" beforeDir="false" afterPath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sosu-frontend/src/views/CitizenView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/sosu-frontend/src/views/CitizenView.vue" afterDir="false" />
-    </list>
+    <list default="true" id="16ae4723-193e-4a3b-98ec-6bb167e2df99" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,7 +36,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1653596093114</updated>
-      <workItem from="1653596096478" duration="999000" />
+      <workItem from="1653596096478" duration="1390000" />
     </task>
     <servers />
   </component>
