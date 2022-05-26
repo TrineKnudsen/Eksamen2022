@@ -24,7 +24,8 @@ pipeline {
                 steps{
                 sh"echo 'We are building the api'"
                 dir("SOSU2022_BackEnd"){
-                sh "dotnet build SOSU2022_BackEnd.sln"
+           
+                sh "dotnet build --configuration Release"
                 }
             }
             post {
@@ -77,8 +78,8 @@ pipeline {
             stage("Frontend"){
                 steps{
                     dir("sosu-frontend"){
-                        sh "docker build -t sosu-image ."
-                        sh "docker run --name sosu-web-container -d -p 8082:80 sosu-image"
+                        sh "docker build -t sosu-image2022 ."
+                        sh "docker run --name sosu-web-container -d -p 8090:80 sosu-image2022"
                     }
                 }
             }
@@ -86,7 +87,7 @@ pipeline {
                 steps{
                     dir("SOSU2022_BackEnd/SOSU2022_BackEnd.WebApi"){
                         sh "docker build -t sosu-api2022 ."
-                        sh "docker run --name sosu-api-container-back -d -p 8081:80 sosu-api"
+                        sh "docker run --name sosu-api-container-back -d -p 8091:80 sosu-api2022"
                     }
                 }
             }
