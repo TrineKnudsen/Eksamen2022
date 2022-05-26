@@ -68,8 +68,11 @@ pipeline {
     stage("Clean containers"){
         steps{
             script {
+            try {
                 sh "docker rm -f sosu-web-container"
                 sh "docker rm -f sosu-api-container-back"
+                }
+                finally { }
             }
         }
     }
