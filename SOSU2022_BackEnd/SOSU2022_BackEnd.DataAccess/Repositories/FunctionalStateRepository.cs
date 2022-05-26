@@ -18,10 +18,10 @@ namespace SOSU2022_BackEnd.DataAcces.Repositories
         }
         
         
-        public List<FunctionalState> GetByCitizen(string citizenId)
+        public List<FunctionalState> GetByCitizen(string citizenId, string subject)
         {
             return _functionals
-                .Find(functionals => functionals.BorgerId == new ObjectId(citizenId) && functionals.Overemne == "Funktionsevnetilstande").ToList();
+                .Find(functionals => functionals.BorgerId == new ObjectId(citizenId).ToString() && functionals.Subject == subject).ToList();
         }
     }
 }

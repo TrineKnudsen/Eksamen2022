@@ -5,6 +5,6 @@ namespace SOSU2022_BackEnd.Core.IServices
 {
     public interface IFunctionalStateService
     {
-        List<FunctionalState> GetByCitizen(string citizenId);
+        List<FunctionalState> GetByCitizen(string citizenId,string subject);
     }
 }

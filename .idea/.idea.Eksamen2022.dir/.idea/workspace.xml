@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="16ae4723-193e-4a3b-98ec-6bb167e2df99" name="Changes" comment="" />
+    <list default="true" id="16ae4723-193e-4a3b-98ec-6bb167e2df99" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.DataAccess/Documents/FunctionalState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Eksamen2022.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Eksamen2022.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BacEnd.Domain/IRepositories/IFunctionalStateRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BacEnd.Domain/IRepositories/IFunctionalStateRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BacEnd.Domain/Services/FunctionalStateService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BacEnd.Domain/Services/FunctionalStateService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.Core/IServices/IFunctionalStateService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.Core/IServices/IFunctionalStateService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.Core/Models/FunctionalState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.Core/Models/FunctionalState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.DataAccess/Repositories/FunctionalStateRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.DataAccess/Repositories/FunctionalStateRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.DataAccess/SOSU2022_BackEnd.DataAccess.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.DataAccess/SOSU2022_BackEnd.DataAccess.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.WebApi/Controllers/FunctionalStateController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.WebApi/Controllers/FunctionalStateController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.sln" beforeDir="false" afterPath="$PROJECT_DIR$/SOSU2022_BackEnd/SOSU2022_BackEnd.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sosu-frontend/src/views/CitizenView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/sosu-frontend/src/views/CitizenView.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,13 +26,37 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  <component name="ProjectId" id="29iVrVflspUI9YdagWOG2G8vroC" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="16ae4723-193e-4a3b-98ec-6bb167e2df99" name="Changes" comment="" />
+      <created>1653596093114</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1653596093114</updated>
+      <workItem from="1653596096478" duration="999000" />
+    </task>
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="false" />
-  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
 </project>

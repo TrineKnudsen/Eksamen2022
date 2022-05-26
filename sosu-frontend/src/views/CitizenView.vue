@@ -104,7 +104,7 @@
         <div>
         <a>Fritekst</a>
         <textarea class="form-control" rows="2" v-text="c.summary"></textarea>
-        <b-button @click="removeCase(c.id)">Fjern sag</b-button>
+        <b-button @click="removeCase(c.id,index)">Fjern sag</b-button>
           </div>
       </div>
     </div>

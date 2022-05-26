@@ -2,14 +2,12 @@ using System;
 
 namespace SOSU2022_BackEnd.Core.Models
 {
-    public class FunctionalState : CaseInformation
+    public class FunctionalState
     {
-        public string Subreading { get; set; }
-        public int NuværendeNiveau { get; set; }
-        public int ForventetNiveau { get; set; }
-        public string FaligNotat { get; set; }
-        public string Udførelse { get; set; }
-        public bool BetydningAfUdførelse { get; set; }
-        public string ØnskerMål { get; set; }
+        public string Id { get; set; }
+        public string BorgerId { get; set; }
+        public string Subject { get; set; }
+        public int Selfcare { get; set; }
+        public int Bodycare { get; set; }
     }
 }

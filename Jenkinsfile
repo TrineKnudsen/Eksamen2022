@@ -11,6 +11,7 @@ pipeline {
         stage ("Startup"){
         steps{
         buildDescription env.COMMITMSG
+       
         }
         }
         
@@ -43,22 +44,11 @@ pipeline {
     stage ("Test"){
         steps {
             dir("SOSU2022_BackEnd/SOSU2022_BackEnd.Domain.Test"){
-                sh "dotnet add package coverlet.collector"
-                sh "dotnet test --collect:'XPlat Code Coverage'"
+                sh "dotnet test"
             }
-            dir("SOSU2022_BackEnd/SOSU2022_BackEnd.Core.Test"){
-                            sh "dotnet add package coverlet.collector"
-                            sh "dotnet test --collect:'XPlat Code Coverage'"
-                        }
+           
         }
-        post {
-            success{
-                publishCoverage adapters: [coberturaAdapter('SOSU2022_BackEnd/SOSU2022_BackEnd.Domain.Test/TestResults/*/coverage.cobertura.xml')]
-                publishCoverage adapters: [coberturaAdapter('SOSU2022_BackEnd/SOSU2022_BackEnd.Core.Test/TestResults/*/coverage.cobertura.xml')]
-                
-                                            
-                            }
-        }
+       
     }
     stage("Clean containers"){
         steps{

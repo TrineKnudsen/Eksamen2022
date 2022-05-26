@@ -16,9 +16,9 @@ namespace SOSU2022_BacEnd.Domain.Services
             _repo = repo ?? throw new InvalidDataException();
         }
         
-        public List<FunctionalState> GetByCitizen(string citizenId)
+        public List<FunctionalState> GetByCitizen(string citizenId,string subject)
         {
-            return _repo.GetByCitizen(citizenId);
+            return _repo.GetByCitizen(citizenId,subject);
         }
     }
 }

@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SOSU2022_BackEnd.Core.IServices;
 using SOSU2022_BackEnd.DTOs;
@@ -22,22 +19,13 @@ namespace SOSU2022_BackEnd.Controllers
         }
 
         [HttpGet("{citizenId}")]
-        public ActionResult<FunctionalStateDto[]> GetByCitizen(string citizenId)
+        public ActionResult<FunctionalStateDto[]> GetByCitizen(string citizenId,string subject)
         {
             try
             {
-                return _functionalStateService.GetByCitizen(citizenId)
+                return _functionalStateService.GetByCitizen(citizenId,subject)
                     .Select(f => new FunctionalStateDto
                     {
-                        Overemne = f.Overemne,
-                        Emne = f.Emne,
-                        Subreading = f.Subreading,
-                        NuværendeNiveau = f.NuværendeNiveau,
-                        ForventetNiveau = f.ForventetNiveau,
-                        FaligNotat = f.FaligNotat,
-                        Udførelse = f.Udførelse,
-                        Betydning = f.BetydningAfUdførelse,
-                        ØnskerMål = f.ØnskerMål
 
                     }).ToArray();
             }

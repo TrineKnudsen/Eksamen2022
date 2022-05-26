@@ -5,6 +5,6 @@ namespace SOSU2022_BacEnd.Domain.IRepositories
 {
     public interface IFunctionalStateRepository
     {
-        List<FunctionalState> GetByCitizen(string citizenId);
+        List<FunctionalState> GetByCitizen(string citizenId, string subject);
     }
 }
