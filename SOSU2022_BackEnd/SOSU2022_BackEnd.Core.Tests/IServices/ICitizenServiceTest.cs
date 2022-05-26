@@ -6,7 +6,7 @@ using SOSU2022_BackEnd.Core.IServices;
 using SOSU2022_BackEnd.Core.Models;
 using Xunit;
 
-namespace SOSU2022_BackEnd.Core.Test.IServices
+namespace SOSU2022_BackEnd.Core.Tests.IServices
 {
     public class ICitizenServiceTest
     {

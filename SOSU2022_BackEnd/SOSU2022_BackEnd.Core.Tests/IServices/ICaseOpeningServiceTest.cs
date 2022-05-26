@@ -5,15 +5,14 @@ using SOSU2022_BacEnd.Domain.Services;
 using SOSU2022_BackEnd.Core.IServices;
 using Xunit;
 
-namespace SOSU2022_BackEnd.Core.Test.IServices
+namespace SOSU2022_BackEnd.Core.Tests.IServices
 {
     public class ICaseOpeningServiceTest
     {
-        
         private readonly Mock<ICaseOpeningRepository> _mock;
         private readonly CaseOpeningService _service;
         
-            public ICaseOpeningServiceTest()
+        public ICaseOpeningServiceTest()
         {
             _mock = new Mock<ICaseOpeningRepository>();
             _service = new CaseOpeningService(_mock.Object);
