@@ -44,9 +44,20 @@ pipeline {
     stage ("Test"){
         steps {
             dir("SOSU2022_BackEnd/SOSU2022_BackEnd.Domain.Test"){
-                sh "dotnet test"
+                sh "dotnet add package coverlet.collector"
+                sh "dotnet test --collect:'Xplat Code Coverage'"
             }
+            dir("SOSU2022_BackEnd/SOSU2022_BackEnd.Core.Test"){
+                            sh "dotnet add package coverlet.collector"
+                            sh "dotnet test --collect:'Xplat Code Coverage'"
+                        }
            
+        }
+        post {
+        succes {
+        publicCoverage adapters: [coberturaAdapter("SOSU2022_BackEnd/SOSU2022_BackEnd.Domain.Test/TestResults/*/coverage.cobertura.xml")]
+        publicCoverage adapters: [coberturaAdapter("SOSU2022_BackEnd/SOSU2022_BackEnd.Core.Test/TestResults/*/coverage.cobertura.xml")]
+        }
         }
        
     }
