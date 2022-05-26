@@ -55,8 +55,8 @@ pipeline {
         }
         post {
           success {
-        publicCoverage adapters: [coberturaAdapter("SOSU2022_BackEnd/SOSU2022_BackEnd.Domain.Test/TestResults/*/coverage.cobertura.xml")]
-        publicCoverage adapters: [coberturaAdapter("SOSU2022_BackEnd/SOSU2022_BackEnd.Core.Tests/TestResults/*/coverage.cobertura.xml")]
+        publishCoverage adapters: [coberturaAdapter("SOSU2022_BackEnd/SOSU2022_BackEnd.Domain.Test/TestResults/*/coverage.cobertura.xml")]
+        publishCoverage adapters: [coberturaAdapter("SOSU2022_BackEnd/SOSU2022_BackEnd.Core.Tests/TestResults/*/coverage.cobertura.xml")]
         }
         }
        
