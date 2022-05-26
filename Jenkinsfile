@@ -69,15 +69,31 @@ pipeline {
         steps{
             script {
             try {
-            sh "docker-compose --env-file config/Test.env down"
+                sh "docker rm -f sosu-web-container"
+                sh "docker rm -f sosu-api-container-back"
                 }
                 finally { }
             }
         }
     }
     stage("Deploy"){
-    steps {
-    sh "docker compose up -d"
-    }
+        parallel {
+            stage("Frontend"){
+                steps{
+                    dir("sosu-frontend"){
+                        sh "docker build -t sosu-image2022 ."
+                        sh "docker run --name sosu-web-container -d -p 8090:80 sosu-image2022"
+                    }
+                }
+            }
+            stage("API"){
+                steps{
+                    dir("SOSU2022_BackEnd/SOSU2022_BackEnd.WebApi"){
+                        sh "docker build -t sosu-api2022 ."
+                        sh "docker run --name sosu-api-container-back -d -p 8091:80 sosu-api2022"
+                    }
+                }
+            }
+        }
     }
 }}
