@@ -3,7 +3,7 @@ import TeacherView from "../views/TeacherView.vue";
 import StudentView from "../views/StudentView.vue";
 import LoginView from "../views/LoginView.vue";
 import NewCitizenView from "../views/NewCitizenView.vue";
-import CitizenView from "../views/CitizenView.vue";
+import CaseInformationView from "../views/CaseInformationVire.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -27,13 +27,13 @@ const router = createRouter({
     },
     {
       path: "/laerer/nyborger",
-      name: "nyborger",
+      name: "CitizenView",
       component: NewCitizenView,
     },
     {
       path: "/sagsoplysning",
       name: "sagsoplysning",
-      component: CitizenView,
+      component: CaseInformationView,
     },
   ],
 });
